@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="dynamic-title">Gepersonaliseerde studieplanner</title>
+
+    <!-- SECTIE: Bootstrap & Custom Styles -->
+    <!-- Bootstrap 5 CSS laden -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <style>
+        /* Custom kleuren en focus-stijl */
+        :root {
+            --bs-primary: #5294CF; /* Primaire kleur */
+            --bs-success: #10B981; /* Status Done */
+            --bs-warning: #F97316; /* Status ToDo */
+            --bs-info: #4ADE80; /* Status Doing (lichtgroen) */
+            --bs-light-bg: #F7F7F7; /* Zeer lichte achtergrond */
+        }
+        
+        body {
+            background-color: var(--bs-light-bg);
+            font-family: 'Inter', sans-serif;
+            color: #1F2937; /* Secondary Text (Donker) */
+        }
+
+        /* Aangepaste focus-ring */
+        .form-control:focus, .form-select:focus {
+            border-color: var(--bs-primary);
+            box-shadow: 0 0 0 0.25rem rgba(82, 148, 207, 0.4);
+        }
+        
+        /* Stijl voor de actieve stap in de progress bar */
+        .step-active {
+            background-color: var(--bs-primary) !important;
+            color: white !important;
+            border-color: var(--bs-primary) !important;
+        }
+
+        /* Stijl voor geselecteerde knoppen in de intake */
+        .btn-check:checked + .btn-custom-style {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SECTIE: Navigatiebalk -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm border-bottom">
+        <div class="container-fluid container-lg">
+            <span class="navbar-brand h1 mb-0 fs-4 fw-bold">
+                <span class="text-primary">Studeer</span>AI
+            </span>
+            <div class="d-flex align-items-center">
+                <a href="over_ons.html" class="nav-link text-dark me-3 d-none d-sm-block">Doel van gepersonaliseerde studieplanner</a>
+                <a href="voor_docenten.html" class="nav-link text-dark me-3 d-none d-sm-block">Voor docenten</a>
+                <button class="btn btn-primary fw-semibold rounded-3 shadow-sm py-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
+                    </svg>
+                    Mijn plannen
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hoofdinhoud container -->
+    <main class="container py-5">
+        <header class="text-center mb-5">
+            <h1 id="main-header-title" class="display-5 fw-extrabold mb-2">
+                Jouw gepersonaliseerde studieplan
+            </h1>
+            <p id="main-header-subtitle" class="lead text-secondary">
+                Laat de AI jouw studielast verdelen in haalbare, motiverende stappen.
+            </p>
+        </header>
+
+        <!-- SECTIE: Stappen Indicator -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="d-flex justify-content-between align-items-center text-center">
+                    <!-- Stap 1: Jouw Profiel -->
+                    <div class="d-flex flex-column align-items-center flex-fill position-relative">
+                        <div class="step-active rounded-circle border border-2 border-primary d-flex align-items-center justify-content-center fw-bold mb-1" style="width: 40px; height: 40px;">1</div>
+                        <p class="text-sm fw-semibold text-primary text-center mt-1">Jouw profiel</p>
+                    </div>
+                    <div class="flex-fill bg-secondary-subtle mx-2" style="height: 2px;"></div>
+                    <!-- Stap 2: Je leerstof -->
+                    <div class="d-flex flex-column align-items-center flex-fill position-relative">
+                        <div class="rounded-circle border border-2 border-secondary text-secondary d-flex align-items-center justify-content-center fw-bold mb-1" style="width: 40px; height: 40px;">2</div>
+                        <p class="text-sm fw-semibold text-secondary text-center mt-1">Jouw leerstof</p>
+                    </div>
+                    <div class="flex-fill bg-secondary-subtle mx-2" style="height: 2px;"></div>
+                    <!-- Stap 3: Jouw Voorkeuren -->
+                    <div class="d-flex flex-column align-items-center flex-fill position-relative">
+                        <div class="rounded-circle border border-2 border-secondary text-secondary d-flex align-items-center justify-content-center fw-bold mb-1" style="width: 40px; height: 40px;">3</div>
+                        <p class="text-sm fw-semibold text-secondary text-center mt-1">Jouw startsituatie</p>
+                    </div>
+                    <div class="flex-fill bg-secondary-subtle mx-2" style="height: 2px;"></div>
+                    <!-- Stap 4: Je Planning -->
+                    <div class="d-flex flex-column align-items-center flex-fill position-relative">
+                        <div class="rounded-circle border border-2 border-secondary text-secondary d-flex align-items-center justify-content-center fw-bold mb-1" style="width: 40px; height: 40px;">4</div>
+                        <p class="text-sm fw-semibold text-secondary text-center mt-1">Jouw planning</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTIE: Planner Kaart -->
+        <div id="planner-card" class="card p-4 p-md-5 rounded-4 shadow-lg border-0">
+            <div class="card-body">
+
+                <!-- STAP 1: Jouw Profiel & Bronbestand -->
+                <section id="step-1-setup" class="mb-5">
+                    <h2 class="h4 fw-bold mb-3 border-bottom border-primary-subtle pb-2">1. Jouw Profiel & bronbestand</h2>
+                    
+                    <!-- Naam invoer -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="first-name" class="form-label text-dark fw-medium">Voornaam:</label>
+                            <input type="text" id="first-name" autocomplete="given-name" placeholder="Je voornaam" oninput="updateTitle()" class="form-control form-control-lg bg-light border-secondary-subtle rounded-3">                        </div>
+                        <div class="col-md-6">
+                            <label for="last-name" class="form-label text-dark fw-medium">Achternaam:</label>
+                            <input type="text" id="last-name" autocomplete="family-name" placeholder="Je achternaam" oninput="updateTitle()" class="form-control form-control-lg bg-light border-secondary-subtle rounded-3">
+                        </div>
+                    </div>
+
+                    <!-- Leerjaar & Stroom -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="niveau-select" class="form-label text-dark fw-medium">Leerjaar:</label>
+                            <select id="niveau-select" class="form-select form-select-lg bg-light border-secondary-subtle rounded-3" onchange="updateConfirmationText()">
+                                <option value="">Kies leerjaar...</option>
+                                <option value="1">Leerjaar 1</option>
+                                <option value="2">Leerjaar 2</option>
+                                <option value="3">Leerjaar 3</option>
+                                <option value="4">Leerjaar 4</option>
+                                <option value="5">Leerjaar 5</option>
+                                <option value="6">Leerjaar 6</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="stroom-select" class="form-label text-dark fw-medium">Onderwijsstroom:</label>
+                            <select id="stroom-select" class="form-select form-select-lg bg-light border-secondary-subtle rounded-3" onchange="updateConfirmationText()">
+                                <option value="">Kies stroom...</option>
+                                <option value="vmbo">VMBO</option>
+                                <option value="havo">HAVO</option>
+                                <option value="vwo">VWO</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Input Methode: AI Tekst (Bestand Upload verwijderd) -->
+                    <div class="mb-4 p-4 bg-light rounded-3 border border-secondary-subtle">
+                        <div class="mb-3">
+                            <label for="openrouter-api-key" class="form-label text-dark fw-medium">OpenRouter API Key <small class="text-muted">(Vereist voor AI)</small>:</label>
+                            <input type="password" id="openrouter-api-key" autocomplete="off" class="form-control bg-white border-secondary-subtle rounded-3" placeholder="Plak hier je OpenRouter API Key (begint met sk-or-v1...)">
+                            <div class="form-text">Je API sleutel wordt alleen lokaal gebruikt en niet opgeslagen.</div>
+                        </div>
+                        <label for="text-input" class="form-label text-dark fw-medium">Plak hier je huiswerk of toetsstof:</label>
+                        <textarea id="text-input" rows="5" class="form-control bg-white border-secondary-subtle rounded-3" placeholder="Bijv: Ik heb volgende week een toets wiskunde over hoofdstuk 3 en 4. Voor Engels moet ik de woordjes van unit 1 leren en een opstel schrijven."></textarea>
+                        <button id="ai-process-btn" onclick="handleTextUpload()" class="btn btn-primary mt-3 w-100 d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stars me-2" viewBox="0 0 16 16">
+                              <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z"/>
+                            </svg>
+                            Analyseer met AI (OpenRouter)
+                        </button>
+                    </div>
+
+                    <!-- Leerjaar Bevestiging & Startdatum Selectie -->
+                    <div id="grade-confirmation-section" class="row g-3 mb-4 d-none">
+                        <div class="col-12 col-md-8">
+                            <div class="alert alert-danger d-flex align-items-center justify-content-between py-3 mb-0" role="alert" id="grade-alert">
+                                <span id="confirmation-text" class="small fw-medium text-danger">Bevestig je leerjaar: Ben je leerling in **4 HAVO**?</span>
+                                <button id="confirm-grade-btn" onclick="confirmGrade()" class="btn btn-danger btn-sm fw-semibold rounded-3">
+                                    Bevestig
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <label for="start-date-input" class="form-label text-dark fw-medium">Selecteer de startdatum:</label>
+                            <input type="date" id="start-date-input" onchange="updateProgress()" class="form-control form-control-lg bg-light border-secondary-subtle rounded-3">
+                        </div>
+                    </div>
+                    
+                    <!-- Status -->
+                    <div id="setup-status" class="mt-4 p-3 bg-primary-subtle text-primary rounded-3 border border-primary-subtle d-none">
+                        <p class="small fw-medium mb-0" id="status-message">Status...</p>
+                    </div>
+                </section>
+                
+                <!-- STAP 2: Je leerstof & toetsoverzicht -->
+                <section id="step-2-subjects" class="mb-5 d-none">
+                    <h2 class="h4 fw-bold mb-3 border-bottom border-primary-subtle pb-2">2. Je leerstof & toetsoverzicht</h2>
+                    
+                    <div class="mb-4">
+                        <p class="small text-secondary mb-3">
+                            Hieronder staan de vakken die we uit je invoer hebben gehaald. Vink aan wat je wilt inplannen.
+                        </p>
+                        <div id="subject-checkboxes" class="row g-3 p-3 bg-light rounded-3 border border-secondary-subtle">
+                            <!-- Checkboxes worden hier door JS ingeladen -->
+                        </div>
+                    </div>
+                    
+                    <h3 class="h5 fw-semibold mb-3">Visueel toetsoverzicht (kleurcode)</h3>
+                    <div id="test-overview" class="p-4 bg-white border border-secondary-subtle rounded-3 shadow-sm">
+                        <p class="small text-secondary mb-0">Selecteer minimaal één vak om het overzicht te zien.</p>
+                    </div>
+                </section>
+                
+                <!-- STAP 3: Jouw Voorkeuren (Intake) -->
+                <section id="step-3-intake" class="mb-5 d-none">
+                    <h2 class="h4 fw-bold mb-3 border-bottom border-primary-subtle pb-2">3. Jouw Voorkeuren (intake)</h2>
+                    <div class="row g-4">
+                        
+                        <!-- Vraag 1: Leerstijl -->
+                        <div class="col-12">
+                            <label for="learning-style" class="form-label text-dark fw-medium mb-2">Wat is jouw dominante leerstijl?</label>
+                            <div class="btn-group w-100" role="group" aria-label="Leerstijl">
+                                <input type="radio" class="btn-check" name="learning-style" id="style-visueel" autocomplete="off">
+                                <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="style-visueel" onclick="selectStyle('style-visueel')">Visueel (Zien)</label>
+
+                                <input type="radio" class="btn-check" name="learning-style" id="style-auditief" autocomplete="off">
+                                <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="style-auditief" onclick="selectStyle('style-auditief')">Auditief (Horen)</label>
+
+                                <input type="radio" class="btn-check" name="learning-style" id="style-kinesthetisch" autocomplete="off">
+                                <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="style-kinesthetisch" onclick="selectStyle('style-kinesthetisch')">Kinesthetisch (Doen)</label>
+                            </div>
+                            <p class="text-muted small mt-2">De AI zal methoden aanbevelen die hierbij passen.</p>
+                        </div>
+
+                        <!-- Vraag 2: Beschikbare tijd -->
+                        <div class="col-md-6">
+                            <label for="time-per-day" class="form-label text-dark fw-medium">Hoeveel tijd (gemiddeld) heb je dagelijks beschikbaar om te studeren (in uren)?</label>
+                            <input type="number" id="time-per-day" placeholder="Bijv. 2" class="form-control form-control-lg bg-light border-secondary-subtle rounded-3">
+                        </div>
+
+                        <!-- Vraag 3: Stressniveau/angst -->
+                        <div class="col-md-6">
+                            <label for="biggest-fear" class="form-label text-dark fw-medium">Wat vind je het moeilijkst of waar ben je bang voor deze toetsweek?</label>
+                            <textarea id="biggest-fear" rows="2" placeholder="Bijv. Dat ik de grote hoeveelheid stof voor Geschiedenis niet op tijd leer." class="form-control form-control-lg bg-light border-secondary-subtle rounded-3"></textarea>
+                        </div>
+                        
+                        <!-- Vraag 4: Werkblokken -->
+                        <div class="col-12">
+                            <label for="work-preference" class="form-label text-dark fw-medium mb-2">Hoe werk je het liefst?</label>
+                            <div class="btn-group w-100" role="group" aria-label="Werkvoorkeur">
+                                <input type="radio" class="btn-check" name="work-preference" id="work-short" autocomplete="off">
+                                <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="work-short" onclick="selectStyle('work-short')">Korte Blokken (25 min / 5 min pauze)</label>
+
+                                <input type="radio" class="btn-check" name="work-preference" id="work-long" autocomplete="off">
+                                <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="work-long" onclick="selectStyle('work-long')">Langere Focus (45-60 min)</label>
+                            </div>
+                            <p class="text-muted small mt-2">De AI gebruikt dit om Pomodoro- of diepe focusblokken in te plannen.</p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- SECTIE: Generatie Knop -->
+                <div id="generate-section" class="mt-4 text-center d-none">
+                    <button onclick="generatePlan()" class="btn btn-primary btn-lg fw-bold rounded-4 shadow py-3 px-5 w-100 w-md-auto">
+                        <svg class="me-3" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        Genereer Mijn Persoonlijke Plan
+                    </button>
+                </div>
+
+                <!-- STAP 4: Je Studieplanning is Klaar! -->
+                <section id="step-4-result" class="mt-5 d-none">
+                    <h2 class="h4 fw-bold mb-3 border-bottom border-success-subtle pb-2 d-flex align-items-center text-success">
+                        <svg class="me-2" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        4. Jouw Planning is klaar!
+                    </h2>
+
+                    <div class="alert alert-light border border-primary-subtle p-4 mb-4" role="alert">
+                        <h3 class="h5 fw-semibold text-primary mb-2">Persoonlijke Tip van de AI</h3>
+                        <p class="text-secondary mb-0 fst-italic">
+                            "Omdat je aangaf bang te zijn voor Geschiedenis, beginnen we elke dag met een korte, haalbare stap van 20 minuten. Vergeet niet: kleine stappen leiden tot grote resultaten!"
+                        </p>
+                    </div>
+
+                    <!-- Plan visualisatie (Tabel Mockup) -->
+                    <div class="table-responsive rounded-3 shadow">
+                        <table class="table table-striped table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col" class="px-3 py-3 text-start small text-muted text-uppercase fw-semibold">Dag</th>
+                                    <th scope="col" class="px-3 py-3 text-start small text-muted text-uppercase fw-semibold">Taak & Vak</th>
+                                    <th scope="col" class="px-3 py-3 text-start small text-muted text-uppercase fw-semibold">Strategie</th>
+                                    <th scope="col" class="px-3 py-3 text-center small text-muted text-uppercase fw-semibold">Tijd (min)</th>
+                                    <th scope="col" class="px-3 py-3 text-center small text-muted text-uppercase fw-semibold">Afgerond</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dag 1 Mockup -->
+                                <tr>
+                                    <td class="px-3 py-3 fw-bold fs-5 text-primary">Ma</td>
+                                    <td class="px-3 py-3">
+                                        <span class="d-block fw-semibold">Hoofdstuk 3: De Middeleeuwen (Stap 1/5)</span>
+                                        <span class="d-block small text-secondary">Vak: Geschiedenis</span>
+                                    </td>
+                                    <td class="px-3 py-3">
+                                        <span class="badge bg-info text-info-emphasis border border-info-subtle rounded-pill fw-medium">Mindmap</span>
+                                    </td>
+                                    <td class="px-3 py-3 text-center">20</td>
+                                    <td class="px-3 py-3 text-center">
+                                        <input type="checkbox" class="form-check-input border-secondary-subtle" style="width: 20px; height: 20px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-3 py-3"></td>
+                                    <td class="px-3 py-3">
+                                        <span class="d-block fw-semibold">Woordenschat: Unit 4 (1/2)</span>
+                                        <span class="d-block small text-secondary">Vak: Frans</span>
+                                    </td>
+                                    <td class="px-3 py-3">
+                                        <span class="badge bg-warning text-warning-emphasis border border-warning-subtle rounded-pill fw-medium">Flashcards</span>
+                                    </td>
+                                    <td class="px-3 py-3 text-center">30</td>
+                                    <td class="px-3 py-3 text-center">
+                                        <input type="checkbox" class="form-check-input border-secondary-subtle" style="width: 20px; height: 20px;">
+                                    </td>
+                                </tr>
+                                <!-- Dag 2 Mockup -->
+                                <tr>
+                                    <td class="px-3 py-3 fw-bold fs-5 text-primary border-top">Di</td>
+                                    <td class="px-3 py-3 border-top">
+                                        <span class="d-block fw-semibold">Oefensommen: Hoofdstuk 5, par. 1-2</span>
+                                        <span class="d-block small text-secondary">Vak: Wiskunde</span>
+                                    </td>
+                                    <td class="px-3 py-3 border-top">
+                                        <span class="badge bg-success text-success-emphasis border border-success-subtle rounded-pill fw-medium">Oefenen</span>
+                                    </td>
+                                    <td class="px-3 py-3 text-center border-top">45</td>
+                                    <td class="px-3 py-3 text-center border-top">
+                                        <input type="checkbox" class="form-check-input border-secondary-subtle" style="width: 20px; height: 20px;" checked>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Optionele Acties -->
+                    <div class="mt-4 d-flex justify-content-center flex-wrap gap-3">
+                        <button class="btn btn-outline-secondary d-flex align-items-center fw-semibold rounded-3 py-2 px-4">
+                            <svg class="me-2" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            Exporteer als PDF
+                        </button>
+                        <button class="btn btn-outline-secondary d-flex align-items-center fw-semibold rounded-3 py-2 px-4">
+                            <svg class="me-2" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                            Geef Mij Een Extra Tip
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- SECTIE: Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- SECTIE: Custom JavaScript Logica -->
+    <script>
+        // Data voor als er geen bestand wordt geüpload of als het bestand fouten bevat.
+        const SUBJECT_DATA_FALLBACK = [
+            { name: "Nederlands", color: "bg-primary", shortColor: "primary", tests: [{ name: "Analyse Lezen", type: "Inzicht" }] },
+            { name: "Engels", color: "bg-danger", shortColor: "danger", tests: [{ name: "Woordenschat Unit 5", type: "Kennis" }] },
+            { name: "Wiskunde B", color: "bg-success", shortColor: "success", tests: [{ name: "Hoofdstuk 7 Oefenen", type: "Toepassing" }] },
+            { name: "Geschiedenis", color: "bg-warning", shortColor: "warning", tests: [{ name: "Middeleeuwen Samenvatting", type: "Kennis" }] },
+            { name: "Biologie", color: "bg-info", shortColor: "info", tests: [{ name: "DNA Structuur", type: "Inzicht" }] },
+            { name: "Economie", color: "bg-secondary", shortColor: "secondary", tests: [{ name: "Marktwerking Casus", type: "Toepassing" }] },
+        ];
+
+        let importedSubjectData = null; 
+        let isFileLoaded = false;
+        let isGradeConfirmed = false;
+        let selectedSubjectsCount = 0;
+        
+        const stepMarkersContainer = document.querySelector('.row.justify-content-center.mb-5 .d-flex.justify-content-between');
+        let stepMarkers = [];
+        if (stepMarkersContainer) {
+            stepMarkers = [
+                stepMarkersContainer.children[0].querySelector('div'), 
+                stepMarkersContainer.children[2].querySelector('div'), 
+                stepMarkersContainer.children[4].querySelector('div'), 
+                stepMarkersContainer.children[6].querySelector('div'), 
+            ];
+        }
+
+        // REAL AI FUNCTION using OpenRouter API
+        async function handleTextUpload() {
+            const textInput = document.getElementById('text-input').value.trim();
+            const apiKey = document.getElementById('openrouter-api-key').value.trim();
+            const statusMessage = document.getElementById('status-message');
+            const gradeConfirmationSection = document.getElementById('grade-confirmation-section');
+            const setupStatus = document.getElementById('setup-status');
+            const processBtn = document.getElementById('ai-process-btn');
+
+            if (!textInput) {
+                alertUser("Voer eerst tekst in.");
+                return;
+            }
+            if (!apiKey) {
+                alertUser("Voer een geldige OpenRouter API Key in.");
+                return;
+            }
+
+            // Show loading state
+            const originalBtnText = processBtn.innerHTML;
+            processBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Analyseren...';
+            processBtn.disabled = true;
+
+            try {
+                // Construct the prompt
+                const prompt = `
+                Analyze the following text and extract study tasks. 
+                Return ONLY a valid JSON array of objects. Do not use Markdown formatting (no \`\`\`).
+                Each object must have these keys:
+                - "Vaknaam": The subject name (e.g., Math, English).
+                - "Stof_Omschrijving": What specifically needs to be studied.
+                - "Type_Toets": Infer the type: "Kennis", "Inzicht", "Toepassing", or "Woordenschat".
+                - "Aanbevolen_Methode": Infer the best method: "Samenvatten", "Oefensommen", "Flashcards", or "Mindmap".
+                - "Geschatte_Tijd_Min": Estimate study time in minutes as an integer.
+
+                Text to analyze:
+                "${textInput}"
+                `;
+
+                const url = "https://openrouter.ai/api/v1/chat/completions";
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`,
+                        'HTTP-Referer': window.location.href, // Optional, for including your app on openrouter.ai rankings.
+                        'X-Title': 'StudeerPlanner AI' // Optional. Shows in rankings on openrouter.ai.
+                    },
+                    body: JSON.stringify({
+                        "model": "google/gemini-2.0-flash-lite-001",
+                        "messages": [
+                          {"role": "user", "content": prompt}
+                        ]
+                    })
+                });
+
+                if (!response.ok) {
+                    let errorMsg = response.statusText;
+                    try {
+                        const errorData = await response.json();
+                        if (errorData.error && errorData.error.message) {
+                            errorMsg = errorData.error.message;
+                        }
+                    } catch (e) {
+                        // Fallback if json parse fails
+                    }
+                    throw new Error(`API Error (${response.status}): ${errorMsg}`);
+                }
+
+                const result = await response.json();
+                // OpenRouter / OpenAI format
+                let aiText = result.choices[0].message.content;
+                
+                // Cleanup potential markdown backticks if Gemini sends them despite instructions
+                aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
+
+                const parsedDataRaw = JSON.parse(aiText);
+                
+                // Map AI format to internal format
+                const colorMap = ["primary", "danger", "success", "warning", "info", "secondary"];
+                
+                // Group by subject
+                const groupedData = {};
+                parsedDataRaw.forEach(item => {
+                    if (!groupedData[item.Vaknaam]) {
+                        groupedData[item.Vaknaam] = [];
+                    }
+                    groupedData[item.Vaknaam].push({
+                        name: item.Stof_Omschrijving,
+                        type: item.Type_Toets,
+                        time: item.Geschatte_Tijd_Min
+                    });
+                });
+
+                // Convert to importedSubjectData format
+                importedSubjectData = Object.keys(groupedData).map((subjectName, index) => {
+                    const nextColor = colorMap[index % colorMap.length];
+                    return {
+                        name: subjectName,
+                        color: `bg-${nextColor}`,
+                        shortColor: nextColor,
+                        tests: groupedData[subjectName]
+                    };
+                });
+
+                isFileLoaded = true;
+                
+                gradeConfirmationSection.classList.remove('d-none');
+                setupStatus.classList.remove('d-none');
+                setupStatus.classList.replace('alert-danger', 'alert-success');
+                setupStatus.classList.replace('text-danger', 'text-success');
+                statusMessage.textContent = `AI Analyse succesvol! ${importedSubjectData.length} vak(ken) gevonden. Bevestig je leerjaar.`;
+                
+                gradeConfirmationSection.scrollIntoView({behavior: 'smooth'});
+
+            } catch (error) {
+                console.error(error);
+                alertUser(`Fout bij AI-analyse: ${error.message}`);
+            } finally {
+                processBtn.innerHTML = originalBtnText;
+                processBtn.disabled = false;
+                updateProgress();
+            }
+        }
+
+        function updateProgress() {
+            const startDateInput = document.getElementById('start-date-input');
+            if (!startDateInput) return; 
+
+            const isDateSelected = startDateInput.value !== '';
+            const step2Subjects = document.getElementById('step-2-subjects');
+            const step3Intake = document.getElementById('step-3-intake');
+            const generateSection = document.getElementById('generate-section');
+            const step4Result = document.getElementById('step-4-result');
+
+            const dataIsLoaded = importedSubjectData !== null || SUBJECT_DATA_FALLBACK.length > 0;
+            const isStep2Complete = isGradeConfirmed && dataIsLoaded;
+            
+            const isStep3Ready = isStep2Complete && isDateSelected && selectedSubjectsCount > 0;
+            
+            stepMarkers.forEach((marker, index) => {
+                if (index > 0) {
+                    marker.classList.remove('step-active');
+                    marker.classList.add('border-secondary', 'text-secondary');
+                }
+            });
+            
+            if (isStep2Complete) {
+                stepMarkers[1].classList.add('step-active');
+                stepMarkers[1].classList.remove('border-secondary', 'text-secondary');
+                step2Subjects.classList.remove('d-none');
+            } else {
+                step2Subjects.classList.add('d-none');
+            }
+            
+            if (isStep3Ready) {
+                stepMarkers[2].classList.add('step-active');
+                stepMarkers[2].classList.remove('border-secondary', 'text-secondary');
+                step3Intake.classList.remove('d-none');
+                generateSection.classList.remove('d-none'); 
+            } else {
+                step3Intake.classList.add('d-none');
+                generateSection.classList.add('d-none');
+                step4Result.classList.add('d-none'); 
+                stepMarkers[3].classList.remove('step-active');
+            }
+        }
+
+        function updateTitle() {
+            const firstName = document.getElementById('first-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            const today = new Date().toLocaleDateString('nl-NL');
+            const mainHeader = document.getElementById('main-header-title');
+            const mainSubtitle = document.getElementById('main-header-subtitle');
+
+            let titleText = "StudeerPlanner AI - Bootstrap";
+            if (firstName || lastName) {
+                titleText = `Studieplanning van ${firstName} ${lastName}, datum: ${today}`;
+            }
+            document.title = titleText;
+
+            if (firstName || lastName) {
+                mainHeader.textContent = `Gepersonaliseerde studieplan van ${firstName} ${lastName}`;
+                mainSubtitle.textContent = `Op datum van vandaag: ${today}`;
+                mainSubtitle.classList.add('text-dark', 'fw-bold');
+                mainSubtitle.classList.remove('text-secondary', 'lead');
+            } else {
+                mainHeader.textContent = "Jouw gepersonaliseerde studieplan";
+                mainSubtitle.textContent = "Laat de AI jouw studielast verdelen in haalbare, motiverende stappen.";
+                mainSubtitle.classList.add('text-secondary', 'lead');
+                mainSubtitle.classList.remove('text-dark', 'fw-bold');
+            }
+        }
+
+        function updateConfirmationText() {
+            const niveau = document.getElementById('niveau-select').value;
+            const stroom = document.getElementById('stroom-select').value;
+            const confirmationText = document.getElementById('confirmation-text');
+            const confirmBtn = document.getElementById('confirm-grade-btn');
+
+            if (niveau && stroom) {
+                const stroomText = stroom.toUpperCase();
+                confirmationText.innerHTML = `Bevestig je leerjaar: Ben je leerling in **${niveau} ${stroomText}**?`;
+                confirmBtn.textContent = "Bevestig";
+                confirmBtn.classList.replace('btn-success', 'btn-danger');
+                confirmBtn.disabled = false;
+                isGradeConfirmed = false;
+                updateProgress(); 
+            }
+        }
+
+        function confirmGrade() {
+            const niveau = document.getElementById('niveau-select').value;
+            const stroom = document.getElementById('stroom-select').value;
+            
+            if (!niveau || !stroom) {
+                alertUser("Selecteer eerst je leerjaar en stroom.");
+                return;
+            }
+
+            isGradeConfirmed = true;
+            
+            const btn = document.getElementById('confirm-grade-btn');
+            const stroomText = stroom.toUpperCase();
+            btn.textContent = `Bevestigd (${niveau} ${stroomText})`;
+            btn.classList.replace('btn-danger', 'btn-success');
+            btn.disabled = true;
+
+            const gradeAlert = document.getElementById('grade-alert');
+            gradeAlert.classList.replace('alert-danger', 'alert-success');
+            gradeAlert.querySelector('span').classList.replace('text-danger', 'text-success');
+
+            loadSubjects();
+            updateProgress();
+        }
+
+        function updateSelectedSubjectsCount() {
+            selectedSubjectsCount = document.querySelectorAll('#subject-checkboxes input:checked').length;
+            updateTestOverview();
+            updateProgress();
+        }
+        
+        function loadSubjects() {
+            const checkboxContainer = document.getElementById('subject-checkboxes');
+            const dataToUse = importedSubjectData || SUBJECT_DATA_FALLBACK;
+            
+            document.getElementById('step-2-subjects').classList.remove('d-none');
+            
+            checkboxContainer.innerHTML = dataToUse.map((subject, index) => `
+                <div class="col-6 col-sm-4 col-md-3">
+                    <div class="p-2 bg-white rounded-3 border border-secondary-subtle shadow-sm">
+                        <div class="form-check">
+                            <input class="form-check-input border-secondary-subtle fs-5" type="checkbox" checked onchange="updateSelectedSubjectsCount()" id="check-${subject.shortColor}-${index}" style="margin-top: 0.3em;">
+                            <label class="form-check-label fw-medium text-dark" for="check-${subject.shortColor}-${index}">
+                                ${subject.name}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            updateSelectedSubjectsCount();  
+        }
+
+        function updateTestOverview() {
+            const overviewContainer = document.getElementById('test-overview');
+            const checkboxes = document.querySelectorAll('#subject-checkboxes input[type="checkbox"]');
+            const dataToUse = importedSubjectData || SUBJECT_DATA_FALLBACK;
+
+            const selectedVakken = dataToUse.filter((subject, index) => checkboxes[index] && checkboxes[index].checked);
+            
+            if (selectedVakken.length === 0) {
+                overviewContainer.innerHTML = '<p class="small text-secondary mb-0">Selecteer minimaal één vak om het overzicht te zien.</p>';
+                return;
+            }
+
+            overviewContainer.innerHTML = `
+                <div class="row g-3">
+                    ${selectedVakken.map(subject => `
+                        <div class="col-12">
+                            <div class="d-flex align-items-start p-3 rounded-3 border border-secondary-subtle shadow-sm bg-white">
+                                <span class="badge ${subject.color} rounded-circle me-3 mt-1" style="width: 12px; height: 12px; min-width: 12px; min-height: 12px; display: inline-block;"></span>
+                                <div>
+                                    <p class="fw-semibold text-dark mb-1">${subject.name}:</p>
+                                    <ul class="list-unstyled small text-secondary mb-0 ps-3">
+                                        ${(subject.tests || []).map(test => `
+                                            <li class="position-relative" style="padding-left: 1rem;">
+                                                <span class="position-absolute" style="left: -0.5rem; top: 0.2rem; line-height: 1;">&bull;</span>
+                                                ${test.name || test.Stof_Omschrijving}
+                                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill ms-2 fw-medium">${test.type || test.Type_Toets}</span>
+                                            </li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+        
+        function selectStyle(id) {
+            const selectedButton = document.querySelector(`label[for="${id}"]`);
+            const buttonGroup = selectedButton.closest('.btn-group');
+
+            buttonGroup.querySelectorAll('.btn-check').forEach(radio => {
+                if (radio.id !== id) {
+                    radio.checked = false;
+                }
+            });
+
+            const radio = document.getElementById(id);
+            radio.checked = true;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstNameInput = document.getElementById('first-name');
+            const lastNameInput = document.getElementById('last-name');
+            const startDateInput = document.getElementById('start-date-input'); 
+            
+            firstNameInput.addEventListener('input', updateProgress);
+            lastNameInput.addEventListener('input', updateProgress);
+            startDateInput.addEventListener('change', updateProgress); 
+
+            updateTitle();
+        });
+
+
+        function generatePlan() {
+            const startDate = document.getElementById('start-date-input').value;
+            const resultSection = document.getElementById('step-4-result');
+            const generateButton = document.querySelector('#generate-section button');
+            
+            const step4Marker = stepMarkers[3]; 
+
+
+            if (!startDate || selectedSubjectsCount === 0) {
+                alertUser('Zorg ervoor dat je een startdatum hebt geselecteerd en minimaal één vak hebt aangevinkt.');
+                return;
+            }
+
+            generateButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Plan Genereren...';
+            generateButton.disabled = true;
+
+            setTimeout(() => {
+                resultSection.classList.remove('d-none');
+
+                step4Marker.classList.add('step-active');
+                step4Marker.classList.remove('border-secondary', 'text-secondary');
+                step4Marker.style.borderColor = 'var(--bs-success)';
+                step4Marker.style.backgroundColor = 'var(--bs-success)';
+
+                generateButton.innerHTML = '<svg class="me-3" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Genereer Mijn Persoonlijke Plan';
+                generateButton.disabled = false;
+
+                resultSection.scrollIntoView({ behavior: 'smooth' });
+
+            }, 2000);
+        }
+
+        function alertUser(message) {
+            const mainContainer = document.querySelector('body');
+            let messageBox = document.getElementById('message-box');
+
+            if (!messageBox) {
+                messageBox = document.createElement('div');
+                messageBox.id = 'message-box';
+                messageBox.className = 'fixed-top mt-3 me-3 z-3 p-3 rounded-3 shadow-lg text-white bg-danger border border-danger-subtle translate-middle-x';
+                messageBox.style.right = '0';
+                messageBox.style.transform = 'translateX(100%)';
+
+                mainContainer.appendChild(messageBox);
+            }
+
+            messageBox.textContent = message;
+            // Gebruik Bootstrap utility classes voor de animatie
+            messageBox.style.transition = 'transform 0.3s ease-out';
+            messageBox.style.transform = 'translateX(0)';
+
+            setTimeout(() => {
+                messageBox.style.transform = 'translateX(150%)';
+            }, 3000);
+        }
+        // Expose functions for inline HTML handlers (onclick/onchange/oninput)
+    Object.assign(window, {
+      handleTextUpload,
+      updateTitle,
+      updateConfirmationText,
+      confirmGrade,
+      updateProgress,
+      generatePlan,
+      selectStyle,
+      updateSelectedSubjectsCount,
+    });
+    </script>
+</body>
+</html>
