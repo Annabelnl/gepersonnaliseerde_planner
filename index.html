@@ -202,49 +202,74 @@
           </div>
         </section>
 
-        <!-- Step 3 -->
-        <section id="step-3-intake" class="mb-5 d-none">
-          <h2 class="h4 fw-bold mb-3 border-bottom border-primary-subtle pb-2">3. Jouw voorkeuren (intake)</h2>
+        <!-- Step 3 (NEW) -->
+<section id="step-3-intake" class="mb-5 d-none">
+  <h2 class="h4 fw-bold mb-3 border-bottom border-primary-subtle pb-2">3. Jouw korte check & keuzes</h2>
 
-          <div class="row g-4">
-            <div class="col-12">
-              <label class="form-label text-dark fw-medium mb-2">Wat is jouw dominante leerstijl?</label>
-              <div class="btn-group w-100" role="group" aria-label="Leerstijl">
-                <input type="radio" class="btn-check" name="learning-style" id="style-visueel" autocomplete="off">
-                <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="style-visueel" onclick="selectStyle('style-visueel')">Visueel (Zien)</label>
+  <div class="row g-4">
+    <div class="col-12">
+      <label for="feedback-clarity" class="form-label text-dark fw-medium">
+        Is alles duidelijk in je planning? Zo niet: wat is niet duidelijk?
+      </label>
+      <textarea id="feedback-clarity" rows="3"
+        class="form-control form-control-lg bg-light border-secondary-subtle rounded-3"
+        placeholder="Bijv. Ik snap niet goed hoe ik vak X moet aanpakken..."></textarea>
+    </div>
 
-                <input type="radio" class="btn-check" name="learning-style" id="style-auditief" autocomplete="off">
-                <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="style-auditief" onclick="selectStyle('style-auditief')">Auditief (Horen)</label>
+    <div class="col-12">
+      <label for="hardest-and-priority" class="form-label text-dark fw-medium">
+        Wat lijkt jou het lastigst? En welke vakken krijgen prioriteit?
+      </label>
+      <textarea id="hardest-and-priority" rows="3"
+        class="form-control form-control-lg bg-light border-secondary-subtle rounded-3"
+        placeholder="Bijv. Geschiedenis is veel stof; prioriteit: wiskunde + geschiedenis..."></textarea>
+    </div>
 
-                <input type="radio" class="btn-check" name="learning-style" id="style-kinesthetisch" autocomplete="off">
-                <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="style-kinesthetisch" onclick="selectStyle('style-kinesthetisch')">Kinesthetisch (Doen)</label>
-              </div>
-              <p class="text-muted small mt-2">De AI zal methoden aanbevelen die hierbij passen.</p>
-            </div>
+    <div class="col-12">
+      <label for="time-availability" class="form-label text-dark fw-medium">
+        Hoeveel tijd heb je in deze periode, en op welke dagen kun je werken?
+      </label>
+      <textarea id="time-availability" rows="3"
+        class="form-control form-control-lg bg-light border-secondary-subtle rounded-3"
+        placeholder="Bijv. ma/di/do 1u, weekend 2u, wo geen tijd..."></textarea>
+    </div>
 
-            <div class="col-md-6">
-              <label for="time-per-day" class="form-label text-dark fw-medium">Hoeveel tijd (gemiddeld) heb je dagelijks beschikbaar om te studeren (in uren)?</label>
-              <input type="number" id="time-per-day" placeholder="Bijv. 2" class="form-control form-control-lg bg-light border-secondary-subtle rounded-3">
-            </div>
+    <div class="col-12">
+      <div class="d-flex align-items-center justify-content-between mb-2">
+        <label class="form-label text-dark fw-medium mb-0">
+          Per vak: wat ga je precies doen?
+        </label>
+        <small class="text-muted">Wordt automatisch gevuld op basis van je selectie.</small>
+      </div>
 
-            <div class="col-md-6">
-              <label for="biggest-fear" class="form-label text-dark fw-medium">Wat vind je het moeilijkst of waar ben je bang voor deze toetsweek?</label>
-              <textarea id="biggest-fear" rows="2" placeholder="Bijv. Dat ik de grote hoeveelheid stof voor Geschiedenis niet op tijd leer." class="form-control form-control-lg bg-light border-secondary-subtle rounded-3"></textarea>
-            </div>
+      <div id="subject-reflection-container" class="p-3 bg-light rounded-3 border border-secondary-subtle">
+        <p class="small text-secondary mb-0">Selecteer vakken in stap 2 om dit onderdeel te vullen.</p>
+      </div>
+    </div>
 
-            <div class="col-12">
-              <label class="form-label text-dark fw-medium mb-2">Hoe werk je het liefst?</label>
-              <div class="btn-group w-100" role="group" aria-label="Werkvoorkeur">
-                <input type="radio" class="btn-check" name="work-preference" id="work-short" autocomplete="off">
-                <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="work-short" onclick="selectStyle('work-short')">Korte Blokken (25 min / 5 min pauze)</label>
+    <div class="col-12">
+      <label class="form-label text-dark fw-medium mb-2">
+        Wil je extra tips per vak, of wil je het algemene plan behouden?
+      </label>
 
-                <input type="radio" class="btn-check" name="work-preference" id="work-long" autocomplete="off">
-                <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="work-long" onclick="selectStyle('work-long')">Langere Focus (45-60 min)</label>
-              </div>
-              <p class="text-muted small mt-2">De AI gebruikt dit om Pomodoro- of diepe focusblokken in te plannen.</p>
-            </div>
-          </div>
-        </section>
+      <div class="btn-group w-100" role="group" aria-label="Tips voorkeur">
+        <input type="radio" class="btn-check" name="tips-choice" id="tips-keep" autocomplete="off" checked>
+        <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="tips-keep">
+          Houd het algemene plan
+        </label>
+
+        <input type="radio" class="btn-check" name="tips-choice" id="tips-extra" autocomplete="off">
+        <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="tips-extra">
+          Geef extra tips per vak
+        </label>
+      </div>
+
+      <p class="text-muted small mt-2 mb-0">
+        Extra tips = korte concrete aanpak per gekozen vak (geen lange theorie).
+      </p>
+    </div>
+  </div>
+</section>
 
         <!-- Generate button -->
         <div id="generate-section" class="mt-4 text-center d-none">
@@ -608,7 +633,101 @@ Text to analyze:
       restoreButton();
     }
   }
+function getDataToUse() {
+  return (importedSubjectData && importedSubjectData.length > 0) ? importedSubjectData : SUBJECT_DATA_FALLBACK;
+}
 
+function getSelectedSubjects() {
+  const dataToUse = getDataToUse();
+  const checkboxes = document.querySelectorAll('#subject-checkboxes input[type="checkbox"]');
+  return dataToUse.filter((subject, index) => checkboxes[index] && checkboxes[index].checked);
+}
+
+function sanitizeIdPart(s) {
+  return String(s || "")
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9\-\_]/g, "");
+}
+
+function renderSubjectReflectionFields() {
+  const container = document.getElementById("subject-reflection-container");
+  if (!container) return;
+
+  const selected = getSelectedSubjects();
+
+  if (!selected.length) {
+    container.innerHTML = `<p class="small text-secondary mb-0">Selecteer vakken in stap 2 om dit onderdeel te vullen.</p>`;
+    return;
+  }
+
+  container.innerHTML = selected.map((subj) => {
+    const sid = sanitizeIdPart(subj.name);
+
+    return `
+      <div class="bg-white rounded-3 border border-secondary-subtle p-3 mb-3 shadow-sm">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <div class="fw-semibold text-dark">${subj.name}</div>
+          <span class="badge ${subj.color} text-white rounded-pill">Vak</span>
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label small text-dark fw-medium" for="subj-must-${sid}">
+            Wat moet je doen (verplicht / toetsstof)?
+          </label>
+          <textarea id="subj-must-${sid}" rows="2"
+            class="form-control bg-light border-secondary-subtle rounded-3"
+            placeholder="Bijv. H3 samenvatten + begrippen leren + oefenvragen..."></textarea>
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label small text-dark fw-medium" for="subj-plan-${sid}">
+            Wat denk je echt te gaan doen (realistisch)?
+          </label>
+          <textarea id="subj-plan-${sid}" rows="2"
+            class="form-control bg-light border-secondary-subtle rounded-3"
+            placeholder="Bijv. 2x oefenen + 1 samenvatting + flashcards..."></textarea>
+        </div>
+
+        <div class="mb-0">
+          <label class="form-label small text-dark fw-medium" for="subj-how-${sid}">
+            Hoe ga je werken (aanpak)?
+          </label>
+          <textarea id="subj-how-${sid}" rows="2"
+            class="form-control bg-light border-secondary-subtle rounded-3"
+            placeholder="Bijv. 25 min blokken, telefoon weg, eerst moeilijke onderdelen..."></textarea>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function collectIntakeData() {
+  const feedbackClarity = document.getElementById("feedback-clarity")?.value.trim() || "";
+  const hardestAndPriority = document.getElementById("hardest-and-priority")?.value.trim() || "";
+  const timeAvailability = document.getElementById("time-availability")?.value.trim() || "";
+
+  const tipsChoice = document.getElementById("tips-extra")?.checked ? "extra" : "keep";
+
+  const selected = getSelectedSubjects();
+  const subjectDetails = selected.map((subj) => {
+    const sid = sanitizeIdPart(subj.name);
+    return {
+      subject: subj.name,
+      must_do: document.getElementById(`subj-must-${sid}`)?.value.trim() || "",
+      likely_do: document.getElementById(`subj-plan-${sid}`)?.value.trim() || "",
+      how_work: document.getElementById(`subj-how-${sid}`)?.value.trim() || "",
+    };
+  });
+
+  return {
+    feedback_clarity: feedbackClarity,
+    hardest_and_priority: hardestAndPriority,
+    time_availability: timeAvailability,
+    tips_choice: tipsChoice,
+    subject_details: subjectDetails,
+  };
+}
   // ===== Progress logic =====
   function updateProgress() {
     const endDateInput = document.getElementById('start-date-input');
