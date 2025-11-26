@@ -121,7 +121,7 @@
           <div class="row g-3 mb-4">
             <div class="col-md-6">
               <label for="niveau-select" class="form-label text-dark fw-medium">Leerjaar:</label>
-              <select id="niveau-select" class="form-select form-select-lg bg-light border-secondary-subtle rounded-3" onchange=""updateProgress()>
+              <select id="niveau-select" class="form-select form-select-lg bg-light border-secondary-subtle rounded-3" onchange="updateProgress()">
                 <option value="">Kies leerjaar...</option>
                 <option value="1">Leerjaar 1</option>
                 <option value="2">Leerjaar 2</option>
@@ -133,7 +133,7 @@
             </div>
             <div class="col-md-6">
               <label for="stroom-select" class="form-label text-dark fw-medium">Onderwijsstroom:</label>
-              <select id="stroom-select" class="form-select form-select-lg bg-light border-secondary-subtle rounded-3" onchange=""updateProgress()>
+              <select id="stroom-select" class="form-select form-select-lg bg-light border-secondary-subtle rounded-3" onchange="updateProgress()">
                 <option value="">Kies stroom...</option>
                 <option value="vmbo">VMBO</option>
                 <option value="havo">HAVO</option>
@@ -175,7 +175,7 @@
 
             <button id="ai-process-btn" onclick="handleTextUpload()" class="btn btn-primary mt-3 w-100 d-flex align-items-center justify-content-center" type="button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stars me-2" viewBox="0 0 16 16">
-                <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z" />
+                <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z" />
               </svg>
               Analyseer met AI (OpenRouter)
             </button>
@@ -202,78 +202,78 @@
           </div>
         </section>
 
-        <!-- Step 3 (NEW) -->
-<section id="step-3-intake" class="mb-5 d-none">
-  <h2 class="h4 fw-bold mb-3 border-bottom border-primary-subtle pb-2">3. Jouw korte check & keuzes</h2>
+        <!-- Step 3 -->
+        <section id="step-3-intake" class="mb-5 d-none">
+          <h2 class="h4 fw-bold mb-3 border-bottom border-primary-subtle pb-2">3. Jouw korte check & keuzes</h2>
 
-  <div class="row g-4">
-    <div class="col-12">
-      <label for="feedback-clarity" class="form-label text-dark fw-medium">
-        Is alles duidelijk in je planning? Zo niet: wat is niet duidelijk?
-      </label>
-      <textarea id="feedback-clarity" rows="3"
-        class="form-control form-control-lg bg-light border-secondary-subtle rounded-3"
-        placeholder="Bijv. Ik snap niet goed hoe ik vak X moet aanpakken..."></textarea>
-    </div>
+          <div class="row g-4">
+            <div class="col-12">
+              <label for="feedback-clarity" class="form-label text-dark fw-medium">
+                Is alles duidelijk in je planning? Zo niet: wat is niet duidelijk?
+              </label>
+              <textarea id="feedback-clarity" rows="3"
+                class="form-control form-control-lg bg-light border-secondary-subtle rounded-3"
+                placeholder="Bijv. Ik snap niet goed hoe ik vak X moet aanpakken..."></textarea>
+            </div>
 
-    <div class="col-12">
-      <label for="hardest-and-priority" class="form-label text-dark fw-medium">
-        Wat lijkt jou het lastigst? En welke vakken krijgen prioriteit?
-      </label>
-      <textarea id="hardest-and-priority" rows="3"
-        class="form-control form-control-lg bg-light border-secondary-subtle rounded-3"
-        placeholder="Bijv. Geschiedenis is veel stof; prioriteit: wiskunde + geschiedenis..."></textarea>
-    </div>
+            <div class="col-12">
+              <label for="hardest-and-priority" class="form-label text-dark fw-medium">
+                Wat lijkt jou het lastigst? En welke vakken krijgen prioriteit?
+              </label>
+              <textarea id="hardest-and-priority" rows="3"
+                class="form-control form-control-lg bg-light border-secondary-subtle rounded-3"
+                placeholder="Bijv. Geschiedenis is veel stof; prioriteit: wiskunde + geschiedenis..."></textarea>
+            </div>
 
-    <div class="col-12">
-      <label for="time-availability" class="form-label text-dark fw-medium">
-        Hoeveel tijd heb je in deze periode, en op welke dagen kun je werken?
-      </label>
-      <textarea id="time-availability" rows="3"
-        class="form-control form-control-lg bg-light border-secondary-subtle rounded-3"
-        placeholder="Bijv. ma/di/do 1u, weekend 2u, wo geen tijd..."></textarea>
-    </div>
+            <div class="col-12">
+              <label for="time-availability" class="form-label text-dark fw-medium">
+                Hoeveel tijd heb je in deze periode, en op welke dagen kun je werken?
+              </label>
+              <textarea id="time-availability" rows="3"
+                class="form-control form-control-lg bg-light border-secondary-subtle rounded-3"
+                placeholder="Bijv. ma/di/do 1u, weekend 2u, wo geen tijd..."></textarea>
+            </div>
 
-    <div class="col-12">
-      <div class="d-flex align-items-center justify-content-between mb-2">
-        <label class="form-label text-dark fw-medium mb-0">
-          Per vak: wat ga je precies doen?
-        </label>
-        <small class="text-muted">Wordt automatisch gevuld op basis van je selectie.</small>
-      </div>
+            <div class="col-12">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <label class="form-label text-dark fw-medium mb-0">
+                  Per vak: wat ga je precies doen?
+                </label>
+                <small class="text-muted">Wordt automatisch gevuld op basis van je selectie.</small>
+              </div>
 
-      <div id="subject-reflection-container" class="p-3 bg-light rounded-3 border border-secondary-subtle">
-        <p class="small text-secondary mb-0">Selecteer vakken in stap 2 om dit onderdeel te vullen.</p>
-      </div>
-    </div>
+              <div id="subject-reflection-container" class="p-3 bg-light rounded-3 border border-secondary-subtle">
+                <p class="small text-secondary mb-0">Selecteer vakken in stap 2 om dit onderdeel te vullen.</p>
+              </div>
+            </div>
 
-    <div class="col-12">
-      <label class="form-label text-dark fw-medium mb-2">
-        Wil je extra tips per vak, of wil je het algemene plan behouden?
-      </label>
+            <div class="col-12">
+              <label class="form-label text-dark fw-medium mb-2">
+                Wil je extra tips per vak, of wil je het algemene plan behouden?
+              </label>
 
-      <div class="btn-group w-100" role="group" aria-label="Tips voorkeur">
-        <input type="radio" class="btn-check" name="tips-choice" id="tips-keep" autocomplete="off" checked>
-        <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="tips-keep">
-          Houd het algemene plan
-        </label>
+              <div class="btn-group w-100" role="group" aria-label="Tips voorkeur">
+                <input type="radio" class="btn-check" name="tips-choice" id="tips-keep" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="tips-keep">
+                  Houd het algemene plan
+                </label>
 
-        <input type="radio" class="btn-check" name="tips-choice" id="tips-extra" autocomplete="off">
-        <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="tips-extra">
-          Geef extra tips per vak
-        </label>
-      </div>
+                <input type="radio" class="btn-check" name="tips-choice" id="tips-extra" autocomplete="off">
+                <label class="btn btn-outline-secondary rounded-3 btn-lg btn-custom-style" for="tips-extra">
+                  Geef extra tips per vak
+                </label>
+              </div>
 
-      <p class="text-muted small mt-2 mb-0">
-        Extra tips = korte concrete aanpak per gekozen vak (geen lange theorie).
-      </p>
-    </div>
-  </div>
-</section>
+              <p class="text-muted small mt-2 mb-0">
+                Extra tips = korte concrete aanpak per gekozen vak (geen lange theorie).
+              </p>
+            </div>
+          </div>
+        </section>
 
         <!-- Generate button -->
         <div id="generate-section" class="mt-4 text-center d-none">
-          <button onclick="generatePlan()" class="btn btn-primary btn-lg fw-bold rounded-4 shadow py-3 px-5 w-100 w-md-auto" type="button">
+          <button id="generate-btn" onclick="generatePlan()" class="btn btn-primary btn-lg fw-bold rounded-4 shadow py-3 px-5 w-100 w-md-auto" type="button">
             <svg class="me-3" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
@@ -292,9 +292,7 @@
 
           <div class="alert alert-light border border-primary-subtle p-4 mb-4" role="alert">
             <h3 class="h5 fw-semibold text-primary mb-2">Persoonlijke tip van de AI</h3>
-            <p class="text-secondary mb-0 fst-italic">
-              "Omdat je aangaf bang te zijn voor Geschiedenis, beginnen we elke dag met een korte, haalbare stap van 20 minuten."
-            </p>
+            <p id="ai-tip-text" class="text-secondary mb-0 fst-italic">...</p>
           </div>
 
           <div class="table-responsive rounded-3 shadow">
@@ -308,21 +306,7 @@
                   <th scope="col" class="px-3 py-3 text-center small text-muted text-uppercase fw-semibold">Afgerond</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td class="px-3 py-3 fw-bold fs-5 text-primary">Ma</td>
-                  <td class="px-3 py-3">
-                    <span class="d-block fw-semibold">Hoofdstuk 3 (Stap 1/5)</span>
-                    <span class="d-block small text-secondary">Vak: Geschiedenis</span>
-                  </td>
-                  <td class="px-3 py-3">
-                    <span class="badge bg-info text-info-emphasis border border-info-subtle rounded-pill fw-medium">Mindmap</span>
-                  </td>
-                  <td class="px-3 py-3 text-center">20</td>
-                  <td class="px-3 py-3 text-center">
-                    <input type="checkbox" class="form-check-input border-secondary-subtle" style="width: 20px; height: 20px;">
-                  </td>
-                </tr>
+              <tbody id="planning-tbody">
               </tbody>
             </table>
           </div>
@@ -334,200 +318,223 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
-<!-- Libs for PDF/Excel parsing -->
-<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.6.82/build/pdf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <!-- Libs for PDF/Excel parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.6.82/build/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
-<!-- App JS -->
-<script>
-  // Fallback (if AI fails / demo)
-  const SUBJECT_DATA_FALLBACK = [
-    { name: "Nederlands", color: "bg-primary", shortColor: "primary", tests: [{ name: "Analyse Lezen", type: "Inzicht", time: 30 }] },
-    { name: "Engels", color: "bg-danger", shortColor: "danger", tests: [{ name: "Woordenschat Unit 5", type: "Kennis", time: 30 }] },
-    { name: "Wiskunde B", color: "bg-success", shortColor: "success", tests: [{ name: "Hoofdstuk 7 Oefenen", type: "Toepassing", time: 45 }] },
-    { name: "Geschiedenis", color: "bg-warning", shortColor: "warning", tests: [{ name: "Middeleeuwen Samenvatting", type: "Kennis", time: 30 }] },
-    { name: "Biologie", color: "bg-info", shortColor: "info", tests: [{ name: "DNA Structuur", type: "Inzicht", time: 30 }] },
-    { name: "Economie", color: "bg-secondary", shortColor: "secondary", tests: [{ name: "Marktwerking Casus", type: "Toepassing", time: 30 }] },
-  ];
-
-  let importedSubjectData = null;
-  let selectedSubjectsCount = 0;
-
-  const stepMarkersContainer = document.querySelector('.row.justify-content-center.mb-5 .d-flex.justify-content-between');
-  let stepMarkers = [];
-  if (stepMarkersContainer) {
-    stepMarkers = [
-      stepMarkersContainer.children[0].querySelector('div'),
-      stepMarkersContainer.children[2].querySelector('div'),
-      stepMarkersContainer.children[4].querySelector('div'),
-      stepMarkersContainer.children[6].querySelector('div'),
+  <!-- App JS -->
+  <script>
+    // Fallback (if AI fails / demo)
+    const SUBJECT_DATA_FALLBACK = [
+      { name: "Nederlands", color: "bg-primary", shortColor: "primary", tests: [{ name: "Analyse Lezen", type: "Inzicht", time: 30 }] },
+      { name: "Engels", color: "bg-danger", shortColor: "danger", tests: [{ name: "Woordenschat Unit 5", type: "Kennis", time: 30 }] },
+      { name: "Wiskunde B", color: "bg-success", shortColor: "success", tests: [{ name: "Hoofdstuk 7 Oefenen", type: "Toepassing", time: 45 }] },
+      { name: "Geschiedenis", color: "bg-warning", shortColor: "warning", tests: [{ name: "Middeleeuwen Samenvatting", type: "Kennis", time: 30 }] },
+      { name: "Biologie", color: "bg-info", shortColor: "info", tests: [{ name: "DNA Structuur", type: "Inzicht", time: 30 }] },
+      { name: "Economie", color: "bg-secondary", shortColor: "secondary", tests: [{ name: "Marktwerking Casus", type: "Toepassing", time: 30 }] },
     ];
-  }
 
-  function isoToday() {
-    const d = new Date();
-    const yyyy = d.getFullYear();
-    const mm = String(d.getMonth() + 1).padStart(2, "0");
-    const dd = String(d.getDate()).padStart(2, "0");
-    return `${yyyy}-${mm}-${dd}`;
-  }
+    // planning result (real)
+    let generatedPlan = null;
 
-  // --- API key helpers (DEMO) ---
-  function getApiKeyFromLocalStorage() {
-    return (localStorage.getItem("OPENROUTER_API_KEY") || "").trim();
-  }
-  function setApiKeyViaPrompt() {
-    const v = prompt("Plak je OpenRouter API key (begint met sk-or-v1...):", getApiKeyFromLocalStorage());
-    if (v && v.trim()) {
-      localStorage.setItem("OPENROUTER_API_KEY", v.trim());
-      alertUser("AI sleutel lokaal opgeslagen (demo).");
-    } else {
-      alertUser("Geen sleutel ingesteld.");
-    }
-  }
-  function clearApiKey() {
-    localStorage.removeItem("OPENROUTER_API_KEY");
-    alertUser("AI sleutel gewist.");
-  }
+    let importedSubjectData = null;
+    let selectedSubjectsCount = 0;
 
-  function setStatus(type, message) {
-    const setupStatus = document.getElementById('setup-status');
-    const statusMessage = document.getElementById('status-message');
-    if (!setupStatus || !statusMessage) return;
-
-    setupStatus.classList.remove('d-none');
-    setupStatus.classList.remove(
-      "bg-primary-subtle", "text-primary", "border-primary-subtle",
-      "bg-danger-subtle", "text-danger", "border-danger-subtle",
-      "bg-success-subtle", "text-success", "border-success-subtle"
-    );
-
-    if (type === "success") setupStatus.classList.add("bg-success-subtle", "text-success", "border-success-subtle");
-    else if (type === "danger") setupStatus.classList.add("bg-danger-subtle", "text-danger", "border-danger-subtle");
-    else setupStatus.classList.add("bg-primary-subtle", "text-primary", "border-primary-subtle");
-
-    statusMessage.textContent = message;
-  }
-
-  async function readInputAsText() {
-    const textArea = document.getElementById("text-input");
-    const fileInput = document.getElementById("file-input");
-    const file = fileInput?.files?.[0];
-
-    if (!file) return (textArea?.value || "").trim();
-
-    const ext = (file.name.split(".").pop() || "").toLowerCase();
-
-    if (ext === "txt" || ext === "csv") return (await file.text()).trim();
-
-    if (ext === "xlsx" || ext === "xls") {
-      const buf = await file.arrayBuffer();
-      const wb = XLSX.read(buf, { type: "array" });
-      const sheetName = wb.SheetNames[0];
-      const ws = wb.Sheets[sheetName];
-      const rows = XLSX.utils.sheet_to_json(ws, { header: 1, raw: false });
-      return rows.map(r => r.filter(Boolean).join(" | ")).join("\n").trim();
+    const stepMarkersContainer = document.querySelector('.row.justify-content-center.mb-5 .d-flex.justify-content-between');
+    let stepMarkers = [];
+    if (stepMarkersContainer) {
+      stepMarkers = [
+        stepMarkersContainer.children[0].querySelector('div'),
+        stepMarkersContainer.children[2].querySelector('div'),
+        stepMarkersContainer.children[4].querySelector('div'),
+        stepMarkersContainer.children[6].querySelector('div'),
+      ];
     }
 
-    if (ext === "pdf") {
-      const buf = await file.arrayBuffer();
+    function isoToday() {
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const dd = String(d.getDate()).padStart(2, "0");
+      return `${yyyy}-${mm}-${dd}`;
+    }
 
-      if (window.pdfjsLib?.GlobalWorkerOptions) {
-        window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-          "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.6.82/build/pdf.worker.min.js";
+    function isoToDate(iso) {
+      // safe local date
+      const [y,m,d] = String(iso).split("-").map(Number);
+      return new Date(y, (m||1)-1, d||1);
+    }
+
+    function dayLabelNL(iso) {
+      const d = isoToDate(iso);
+      const wd = new Intl.DateTimeFormat("nl-NL", { weekday: "short" }).format(d);
+      // normalize like "ma", "di"
+      return wd.charAt(0).toUpperCase() + wd.slice(1);
+    }
+
+    // --- API key helpers (DEMO) ---
+    function getApiKeyFromLocalStorage() {
+      return (localStorage.getItem("OPENROUTER_API_KEY") || "").trim();
+    }
+    function setApiKeyViaPrompt() {
+      const v = prompt("Plak je OpenRouter API key (begint met sk-or-v1...):", getApiKeyFromLocalStorage());
+      if (v && v.trim()) {
+        localStorage.setItem("OPENROUTER_API_KEY", v.trim());
+        alertUser("AI sleutel lokaal opgeslagen (demo).", "success");
+      } else {
+        alertUser("Geen sleutel ingesteld.", "danger");
+      }
+    }
+    function clearApiKey() {
+      localStorage.removeItem("OPENROUTER_API_KEY");
+      alertUser("AI sleutel gewist.", "warning");
+    }
+
+    function setStatus(type, message) {
+      const setupStatus = document.getElementById('setup-status');
+      const statusMessage = document.getElementById('status-message');
+      if (!setupStatus || !statusMessage) return;
+
+      setupStatus.classList.remove('d-none');
+      setupStatus.classList.remove(
+        "bg-primary-subtle","text-primary","border-primary-subtle",
+        "bg-danger-subtle","text-danger","border-danger-subtle",
+        "bg-success-subtle","text-success","border-success-subtle"
+      );
+
+      if (type === "success") setupStatus.classList.add("bg-success-subtle","text-success","border-success-subtle");
+      else if (type === "danger") setupStatus.classList.add("bg-danger-subtle","text-danger","border-danger-subtle");
+      else setupStatus.classList.add("bg-primary-subtle","text-primary","border-primary-subtle");
+
+      statusMessage.textContent = message;
+    }
+
+    async function readInputAsText() {
+      const textArea = document.getElementById("text-input");
+      const fileInput = document.getElementById("file-input");
+      const file = fileInput?.files?.[0];
+
+      if (!file) return (textArea?.value || "").trim();
+
+      const ext = (file.name.split(".").pop() || "").toLowerCase();
+
+      if (ext === "txt" || ext === "csv") return (await file.text()).trim();
+
+      if (ext === "xlsx" || ext === "xls") {
+        const buf = await file.arrayBuffer();
+        const wb = XLSX.read(buf, { type: "array" });
+        const sheetName = wb.SheetNames[0];
+        const ws = wb.Sheets[sheetName];
+        const rows = XLSX.utils.sheet_to_json(ws, { header: 1, raw: false });
+        return rows.map(r => r.filter(Boolean).join(" | ")).join("\n").trim();
       }
 
-      const pdf = await window.pdfjsLib.getDocument({ data: buf }).promise;
-      let text = "";
-      for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const content = await page.getTextContent();
-        const pageText = content.items.map(it => it.str).join(" ");
-        text += pageText + "\n";
+      if (ext === "pdf") {
+        const buf = await file.arrayBuffer();
+
+        if (window.pdfjsLib?.GlobalWorkerOptions) {
+          window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.6.82/build/pdf.worker.min.js";
+        }
+
+        const pdf = await window.pdfjsLib.getDocument({ data: buf }).promise;
+        let text = "";
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const content = await page.getTextContent();
+          const pageText = content.items.map(it => it.str).join(" ");
+          text += pageText + "\n";
+        }
+        return text.trim();
       }
-      return text.trim();
+
+      throw new Error("Onbekend bestandstype. Gebruik PDF, Excel, CSV of TXT.");
     }
 
-    throw new Error("Onbekend bestandstype. Gebruik PDF, Excel, CSV of TXT.");
-  }
-
-  function safeParseJsonArray(s) {
-    // 1) direct parse
-    try {
-      const v = JSON.parse(s);
-      if (Array.isArray(v)) return v;
-    } catch (e) {}
-
-    // 2) try extracting [...] and parse
-    const start = s.indexOf("[");
-    const end = s.lastIndexOf("]");
-    if (start !== -1 && end !== -1 && end > start) {
+    function safeParseJsonArray(s) {
       try {
+        const v = JSON.parse(s);
+        if (Array.isArray(v)) return v;
+      } catch (e) {}
+      const start = s.indexOf("[");
+      const end = s.lastIndexOf("]");
+      if (start !== -1 && end !== -1 && end > start) {
         const slice = s.slice(start, end + 1);
         const v2 = JSON.parse(slice);
         if (Array.isArray(v2)) return v2;
+      }
+      throw new Error("AI output is geen geldige JSON array.");
+    }
+
+    function safeParseJsonObject(s) {
+      try {
+        return JSON.parse(s);
       } catch (e) {}
+      const start = s.indexOf("{");
+      const end = s.lastIndexOf("}");
+      if (start !== -1 && end !== -1 && end > start) {
+        const slice = s.slice(start, end + 1);
+        return JSON.parse(slice);
+      }
+      throw new Error("AI output is geen geldige JSON object.");
     }
 
-    throw new Error("AI output is geen geldige JSON array.");
-  }
-
-  // ===== (Option 1) no extra confirmation step =====
-  function updateConfirmationText() {
-    updateProgress();
-  }
-
-  // ===== AI extraction (OpenRouter) =====
-  async function handleTextUpload() {
-    const textInput = await readInputAsText();
-    const processBtn = document.getElementById('ai-process-btn');
-
-    if (!textInput) {
-      alertUser("Voer eerst tekst in of upload een bestand.");
-      return;
+    // ===== (Option 1) no extra confirmation step =====
+    function updateConfirmationText() {
+      updateProgress();
     }
 
-    const leerlingLeerjaar = document.getElementById("niveau-select")?.value;
-    const leerlingStroom = document.getElementById("stroom-select")?.value;
-    const endISO = document.getElementById("start-date-input")?.value; // einddatum planning
-    const startISO = isoToday(); // vandaag
+    // ===== AI extraction (OpenRouter) =====
+    async function handleTextUpload() {
+      const textInput = await readInputAsText();
+      const processBtn = document.getElementById('ai-process-btn');
 
-    if (!leerlingLeerjaar || !leerlingStroom) {
-      alertUser("Selecteer eerst leerjaar en onderwijsstroom.");
-      return;
-    }
-    if (!endISO) {
-      alertUser("Selecteer een einddatum (tot wanneer je planning loopt).");
-      return;
-    }
+      if (!textInput) {
+        alertUser("Voer eerst tekst in of upload een bestand.");
+        return;
+      }
 
-    let apiKey = getApiKeyFromLocalStorage();
-    if (!apiKey) {
-      setApiKeyViaPrompt();
-      apiKey = getApiKeyFromLocalStorage();
-    }
-    if (!apiKey) {
-      alertUser("Geen OpenRouter API key ingesteld.");
-      return;
-    }
+      const leerlingLeerjaar = document.getElementById("niveau-select")?.value;
+      const leerlingStroom = document.getElementById("stroom-select")?.value;
+      const endISO = document.getElementById("start-date-input")?.value; // einddatum planning
+      const startISO = isoToday(); // vandaag
 
-    // loading state
-    const originalBtnText = processBtn?.innerHTML || "";
-    if (processBtn) {
-      processBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Analyseren...';
-      processBtn.disabled = true;
-    }
+      if (!leerlingLeerjaar || !leerlingStroom) {
+        alertUser("Selecteer eerst leerjaar en onderwijsstroom.");
+        return;
+      }
+      if (!endISO) {
+        alertUser("Selecteer een einddatum (tot wanneer je planning loopt).");
+        return;
+      }
 
-    const restoreButton = () => {
-      if (!processBtn) return;
-      processBtn.innerHTML = originalBtnText;
-      processBtn.disabled = false;
-    };
+      let apiKey = getApiKeyFromLocalStorage();
+      if (!apiKey) {
+        setApiKeyViaPrompt();
+        apiKey = getApiKeyFromLocalStorage();
+      }
+      if (!apiKey) {
+        alertUser("Geen OpenRouter API key ingesteld.");
+        return;
+      }
 
-    try {
-      setStatus("primary", "AI analyse bezig...");
+      // loading state
+      const originalBtnText = processBtn?.innerHTML || "";
+      if (processBtn) {
+        processBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Analyseren...';
+        processBtn.disabled = true;
+      }
 
-      const prompt = `
+      const restoreButton = () => {
+        if (!processBtn) return;
+        processBtn.innerHTML = originalBtnText;
+        processBtn.disabled = false;
+      };
+
+      try {
+        setStatus("primary", "AI analyse bezig...");
+
+        const prompt = `
 You are a study-task extraction engine.
 
 Student profile:
@@ -556,434 +563,607 @@ Rules:
 
 Text to analyze:
 "${textInput}"
-      `.trim();
+        `.trim();
 
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`,
-          "HTTP-Referer": window.location.href,
-          "X-Title": "StudeerPlanner AI",
-        },
-        body: JSON.stringify({
-          model: "google/gemini-2.0-flash-lite-001",
-          messages: [{ role: "user", content: prompt }],
-        }),
-      });
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${apiKey}`,
+            "HTTP-Referer": window.location.href,
+            "X-Title": "StudeerPlanner AI",
+          },
+          body: JSON.stringify({
+            model: "google/gemini-2.0-flash-lite-001",
+            messages: [{ role: "user", content: prompt }],
+          }),
+        });
 
-      if (!response.ok) {
-        let errorMsg = response.statusText;
-        try {
-          const errorData = await response.json();
-          if (errorData?.error?.message) errorMsg = errorData.error.message;
-        } catch (e) {}
-        throw new Error(`API Error (${response.status}): ${errorMsg}`);
+        if (!response.ok) {
+          let errorMsg = response.statusText;
+          try {
+            const errorData = await response.json();
+            if (errorData?.error?.message) errorMsg = errorData.error.message;
+          } catch (e) {}
+          throw new Error(`API Error (${response.status}): ${errorMsg}`);
+        }
+
+        const result = await response.json();
+        let aiText = result?.choices?.[0]?.message?.content ?? "";
+
+        aiText = aiText.replace(/```json/g, "").replace(/```/g, "").trim();
+        const parsedDataRaw = safeParseJsonArray(aiText);
+
+        const parsedDataFiltered = parsedDataRaw.filter((item) => {
+          const d = item?.Einddatum;
+          if (!d) return true;
+          return d >= startISO && d <= endISO;
+        });
+
+        const colorMap = ["primary", "danger", "success", "warning", "info", "secondary"];
+        const groupedData = {};
+
+        parsedDataFiltered.forEach((item) => {
+          if (!item?.Vaknaam || !item?.Stof_Omschrijving) return;
+          if (!groupedData[item.Vaknaam]) groupedData[item.Vaknaam] = [];
+          groupedData[item.Vaknaam].push({
+            name: item.Stof_Omschrijving,
+            type: item.Type_Toets || "Kennis",
+            time: Number.isFinite(Number(item.Geschatte_Tijd_Min)) ? Number(item.Geschatte_Tijd_Min) : 30,
+            method: item.Aanbevolen_Methode || null,
+          });
+        });
+
+        importedSubjectData = Object.keys(groupedData).map((subjectName, index) => {
+          const nextColor = colorMap[index % colorMap.length];
+          return {
+            name: subjectName,
+            color: `bg-${nextColor}`,
+            shortColor: nextColor,
+            tests: groupedData[subjectName],
+          };
+        });
+
+        setStatus("success", `AI Analyse succesvol! ${importedSubjectData.length} vak(ken) gevonden.`);
+        loadSubjects();
+        updateProgress();
+
+        document.getElementById('step-2-subjects')?.scrollIntoView({ behavior: "smooth" });
+
+      } catch (error) {
+        console.error(error);
+        setStatus("danger", `Fout bij AI-analyse: ${error.message}`);
+        alertUser(`Fout bij AI-analyse: ${error.message}`);
+      } finally {
+        restoreButton();
+      }
+    }
+
+    // ===== selection + intake helpers =====
+    function getDataToUse() {
+      return (importedSubjectData && importedSubjectData.length > 0) ? importedSubjectData : SUBJECT_DATA_FALLBACK;
+    }
+
+    function getSelectedSubjects() {
+      const dataToUse = getDataToUse();
+      const checkboxes = document.querySelectorAll('#subject-checkboxes input[type="checkbox"]');
+      return dataToUse.filter((subject, index) => checkboxes[index] && checkboxes[index].checked);
+    }
+
+    function sanitizeIdPart(s) {
+      return String(s || "")
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9\-\_]/g, "");
+    }
+
+    function renderSubjectReflectionFields() {
+      const container = document.getElementById("subject-reflection-container");
+      if (!container) return;
+
+      const selected = getSelectedSubjects();
+      if (!selected.length) {
+        container.innerHTML = `<p class="small text-secondary mb-0">Selecteer vakken in stap 2 om dit onderdeel te vullen.</p>`;
+        return;
       }
 
-      const result = await response.json();
-      let aiText = result?.choices?.[0]?.message?.content ?? "";
+      container.innerHTML = selected.map((subj) => {
+        const sid = sanitizeIdPart(subj.name);
+        const extractedTasks = (subj.tests || []).map(t => `• ${t.name}`).join("\n");
+        return `
+          <div class="bg-white rounded-3 border border-secondary-subtle p-3 mb-3 shadow-sm">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div class="fw-semibold text-dark">${subj.name}</div>
+              <span class="badge ${subj.color} text-white rounded-pill">Vak</span>
+            </div>
 
-      aiText = aiText.replace(/```json/g, "").replace(/```/g, "").trim();
-      const parsedDataRaw = safeParseJsonArray(aiText);
+            <div class="mb-2">
+              <label class="form-label small text-dark fw-medium" for="subj-must-${sid}">
+                Wat moet je doen (verplicht / toetsstof)?
+              </label>
+              <textarea id="subj-must-${sid}" rows="2"
+                class="form-control bg-light border-secondary-subtle rounded-3"
+                placeholder="Bijv. H3 samenvatten + begrippen leren + oefenvragen...">${extractedTasks}</textarea>
+            </div>
 
-      const parsedDataFiltered = parsedDataRaw.filter((item) => {
-        const d = item?.Einddatum;
-        if (!d) return true;
-        return d >= startISO && d <= endISO;
-      });
+            <div class="mb-2">
+              <label class="form-label small text-dark fw-medium" for="subj-plan-${sid}">
+                Wat denk je echt te gaan doen (realistisch)?
+              </label>
+              <textarea id="subj-plan-${sid}" rows="2"
+                class="form-control bg-light border-secondary-subtle rounded-3"
+                placeholder="Bijv. 2x oefenen + 1 samenvatting + flashcards..."></textarea>
+            </div>
 
-      const colorMap = ["primary", "danger", "success", "warning", "info", "secondary"];
-      const groupedData = {};
+            <div class="mb-0">
+              <label class="form-label small text-dark fw-medium" for="subj-how-${sid}">
+                Hoe ga je werken (aanpak)?
+              </label>
+              <textarea id="subj-how-${sid}" rows="2"
+                class="form-control bg-light border-secondary-subtle rounded-3"
+                placeholder="Bijv. 25 min blokken, telefoon weg, eerst moeilijke onderdelen..."></textarea>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
 
-      parsedDataFiltered.forEach((item) => {
-        if (!item?.Vaknaam || !item?.Stof_Omschrijving) return;
+    function collectIntakeData() {
+      const feedbackClarity = document.getElementById("feedback-clarity")?.value.trim() || "";
+      const hardestAndPriority = document.getElementById("hardest-and-priority")?.value.trim() || "";
+      const timeAvailability = document.getElementById("time-availability")?.value.trim() || "";
 
-        if (!groupedData[item.Vaknaam]) groupedData[item.Vaknaam] = [];
+      const tipsChoice = document.getElementById("tips-extra")?.checked ? "extra" : "keep";
 
-        const minutes = Number(item.Geschatte_Tijd_Min);
-        groupedData[item.Vaknaam].push({
-          name: item.Stof_Omschrijving,
-          type: item.Type_Toets || "Kennis",
-          time: Number.isFinite(minutes) ? minutes : 30,
-        });
-      });
-
-      importedSubjectData = Object.keys(groupedData).map((subjectName, index) => {
-        const nextColor = colorMap[index % colorMap.length];
+      const selected = getSelectedSubjects();
+      const subjectDetails = selected.map((subj) => {
+        const sid = sanitizeIdPart(subj.name);
         return {
-          name: subjectName,
-          color: `bg-${nextColor}`,
-          shortColor: nextColor,
-          tests: groupedData[subjectName],
+          subject: subj.name,
+          must_do: document.getElementById(`subj-must-${sid}`)?.value.trim() || "",
+          likely_do: document.getElementById(`subj-plan-${sid}`)?.value.trim() || "",
+          how_work: document.getElementById(`subj-how-${sid}`)?.value.trim() || "",
         };
       });
 
-      setStatus("success", `AI Analyse succesvol! ${importedSubjectData.length} vak(ken) gevonden.`);
-      loadSubjects();
+      return {
+        feedback_clarity: feedbackClarity,
+        hardest_and_priority: hardestAndPriority,
+        time_availability: timeAvailability,
+        tips_choice: tipsChoice,
+        subject_details: subjectDetails,
+      };
+    }
+
+    // ===== Progress logic =====
+    function updateProgress() {
+      const endDateInput = document.getElementById('start-date-input');
+      const step2Subjects = document.getElementById('step-2-subjects');
+      const step3Intake = document.getElementById('step-3-intake');
+      const generateSection = document.getElementById('generate-section');
+      const step4Result = document.getElementById('step-4-result');
+
+      if (!endDateInput || !step2Subjects || !step3Intake || !generateSection || !step4Result) return;
+
+      const isDateSelected = endDateInput.value !== '';
+      const leerlingLeerjaar = document.getElementById("niveau-select")?.value;
+      const leerlingStroom = document.getElementById("stroom-select")?.value;
+      const isProfileSelected = !!leerlingLeerjaar && !!leerlingStroom;
+
+      const dataIsLoaded = (importedSubjectData && importedSubjectData.length >= 0) || SUBJECT_DATA_FALLBACK.length > 0;
+      const isStep2Complete = isProfileSelected && dataIsLoaded;
+
+      if (isStep2Complete) {
+        step2Subjects.classList.remove('d-none');
+        const container = document.getElementById('subject-checkboxes');
+        if (container && container.children.length === 0) {
+          loadSubjects();
+        }
+      } else {
+        step2Subjects.classList.add('d-none');
+      }
+
+      const isStep3Ready = isStep2Complete && isDateSelected && selectedSubjectsCount > 0;
+
+      // reset markers (except step 1 which is static in HTML)
+      stepMarkers.forEach((marker, index) => {
+        if (index > 0) {
+          marker.classList.remove('step-active');
+          marker.classList.add('border-secondary', 'text-secondary');
+        }
+      });
+
+      if (isStep2Complete && stepMarkers[1]) {
+        stepMarkers[1].classList.add('step-active');
+        stepMarkers[1].classList.remove('border-secondary', 'text-secondary');
+      }
+
+      if (isStep3Ready) {
+        if (stepMarkers[2]) {
+          stepMarkers[2].classList.add('step-active');
+          stepMarkers[2].classList.remove('border-secondary', 'text-secondary');
+        }
+        step3Intake.classList.remove('d-none');
+        generateSection.classList.remove('d-none');
+
+        // keep subject-based fields in sync
+        renderSubjectReflectionFields();
+      } else {
+        step3Intake.classList.add('d-none');
+        generateSection.classList.add('d-none');
+        step4Result.classList.add('d-none');
+        if (stepMarkers[3]) stepMarkers[3].classList.remove('step-active');
+      }
+    }
+
+    // ===== UI helpers =====
+    function updateTitle() {
+      const firstName = document.getElementById('first-name')?.value.trim() || "";
+      const lastName = document.getElementById('last-name')?.value.trim() || "";
+      const today = new Date().toLocaleDateString('nl-NL');
+      const mainHeader = document.getElementById('main-header-title');
+      const mainSubtitle = document.getElementById('main-header-subtitle');
+
+      let titleText = "StudeerPlanner AI - Bootstrap";
+      if (firstName || lastName) titleText = `Studieplanning van ${firstName} ${lastName}, datum: ${today}`;
+      document.title = titleText;
+
+      if (!mainHeader || !mainSubtitle) return;
+
+      if (firstName || lastName) {
+        mainHeader.textContent = `Gepersonaliseerde studieplan van ${firstName} ${lastName}`;
+        mainSubtitle.textContent = `Op datum van vandaag: ${today}`;
+        mainSubtitle.classList.add('text-dark', 'fw-bold');
+        mainSubtitle.classList.remove('text-secondary', 'lead');
+      } else {
+        mainHeader.textContent = "Jouw gepersonaliseerde studieplan";
+        mainSubtitle.textContent = "Laat de AI jouw studielast verdelen in haalbare, motiverende stappen.";
+        mainSubtitle.classList.add('text-secondary', 'lead');
+        mainSubtitle.classList.remove('text-dark', 'fw-bold');
+      }
+    }
+
+    function updateSelectedSubjectsCount() {
+      selectedSubjectsCount = document.querySelectorAll('#subject-checkboxes input:checked').length;
+      updateTestOverview();
+      renderSubjectReflectionFields(); // keep step 3 synced
       updateProgress();
-
-      document.getElementById('step-2-subjects')?.scrollIntoView({ behavior: "smooth" });
-
-    } catch (error) {
-      console.error(error);
-      setStatus("danger", `Fout bij AI-analyse: ${error.message}`);
-      alertUser(`Fout bij AI-analyse: ${error.message}`);
-    } finally {
-      restoreButton();
-    }
-  }
-function getDataToUse() {
-  return (importedSubjectData && importedSubjectData.length > 0) ? importedSubjectData : SUBJECT_DATA_FALLBACK;
-}
-
-function getSelectedSubjects() {
-  const dataToUse = getDataToUse();
-  const checkboxes = document.querySelectorAll('#subject-checkboxes input[type="checkbox"]');
-  return dataToUse.filter((subject, index) => checkboxes[index] && checkboxes[index].checked);
-}
-
-function sanitizeIdPart(s) {
-  return String(s || "")
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9\-\_]/g, "");
-}
-
-function renderSubjectReflectionFields() {
-  const container = document.getElementById("subject-reflection-container");
-  if (!container) return;
-
-  const selected = getSelectedSubjects();
-
-  if (!selected.length) {
-    container.innerHTML = `<p class="small text-secondary mb-0">Selecteer vakken in stap 2 om dit onderdeel te vullen.</p>`;
-    return;
-  }
-
-  container.innerHTML = selected.map((subj) => {
-    const sid = sanitizeIdPart(subj.name);
-
-    return `
-      <div class="bg-white rounded-3 border border-secondary-subtle p-3 mb-3 shadow-sm">
-        <div class="d-flex align-items-center justify-content-between mb-2">
-          <div class="fw-semibold text-dark">${subj.name}</div>
-          <span class="badge ${subj.color} text-white rounded-pill">Vak</span>
-        </div>
-
-        <div class="mb-2">
-          <label class="form-label small text-dark fw-medium" for="subj-must-${sid}">
-            Wat moet je doen (verplicht / toetsstof)?
-          </label>
-          <textarea id="subj-must-${sid}" rows="2"
-            class="form-control bg-light border-secondary-subtle rounded-3"
-            placeholder="Bijv. H3 samenvatten + begrippen leren + oefenvragen..."></textarea>
-        </div>
-
-        <div class="mb-2">
-          <label class="form-label small text-dark fw-medium" for="subj-plan-${sid}">
-            Wat denk je echt te gaan doen (realistisch)?
-          </label>
-          <textarea id="subj-plan-${sid}" rows="2"
-            class="form-control bg-light border-secondary-subtle rounded-3"
-            placeholder="Bijv. 2x oefenen + 1 samenvatting + flashcards..."></textarea>
-        </div>
-
-        <div class="mb-0">
-          <label class="form-label small text-dark fw-medium" for="subj-how-${sid}">
-            Hoe ga je werken (aanpak)?
-          </label>
-          <textarea id="subj-how-${sid}" rows="2"
-            class="form-control bg-light border-secondary-subtle rounded-3"
-            placeholder="Bijv. 25 min blokken, telefoon weg, eerst moeilijke onderdelen..."></textarea>
-        </div>
-      </div>
-    `;
-  }).join("");
-}
-
-function collectIntakeData() {
-  const feedbackClarity = document.getElementById("feedback-clarity")?.value.trim() || "";
-  const hardestAndPriority = document.getElementById("hardest-and-priority")?.value.trim() || "";
-  const timeAvailability = document.getElementById("time-availability")?.value.trim() || "";
-
-  const tipsChoice = document.getElementById("tips-extra")?.checked ? "extra" : "keep";
-
-  const selected = getSelectedSubjects();
-  const subjectDetails = selected.map((subj) => {
-    const sid = sanitizeIdPart(subj.name);
-    return {
-      subject: subj.name,
-      must_do: document.getElementById(`subj-must-${sid}`)?.value.trim() || "",
-      likely_do: document.getElementById(`subj-plan-${sid}`)?.value.trim() || "",
-      how_work: document.getElementById(`subj-how-${sid}`)?.value.trim() || "",
-    };
-  });
-
-  return {
-    feedback_clarity: feedbackClarity,
-    hardest_and_priority: hardestAndPriority,
-    time_availability: timeAvailability,
-    tips_choice: tipsChoice,
-    subject_details: subjectDetails,
-  };
-}
-  // ===== Progress logic =====
-  function updateProgress() {
-    const endDateInput = document.getElementById('start-date-input');
-    const step2Subjects = document.getElementById('step-2-subjects');
-    const step3Intake = document.getElementById('step-3-intake');
-    const generateSection = document.getElementById('generate-section');
-    const step4Result = document.getElementById('step-4-result');
-
-    if (!endDateInput || !step2Subjects || !step3Intake || !generateSection || !step4Result) return;
-
-    const isDateSelected = endDateInput.value !== '';
-    const leerlingLeerjaar = document.getElementById("niveau-select")?.value;
-    const leerlingStroom = document.getElementById("stroom-select")?.value;
-    const isProfileSelected = !!leerlingLeerjaar && !!leerlingStroom;
-
-    // NOTE: fallback makes this always available as demo
-    const dataIsLoaded = (importedSubjectData && importedSubjectData.length >= 0) || SUBJECT_DATA_FALLBACK.length > 0;
-    const isStep2Complete = isProfileSelected && dataIsLoaded;
-
-    if (isStep2Complete) {
-      step2Subjects.classList.remove('d-none');
-      const container = document.getElementById('subject-checkboxes');
-      if (container && container.children.length === 0) {
-        loadSubjects();
-      }
-    } else {
-      step2Subjects.classList.add('d-none');
     }
 
-    const isStep3Ready = isStep2Complete && isDateSelected && selectedSubjectsCount > 0;
+    function loadSubjects() {
+      const checkboxContainer = document.getElementById('subject-checkboxes');
+      if (!checkboxContainer) return;
 
-    // reset markers (except step 1 which is static in HTML)
-    stepMarkers.forEach((marker, index) => {
-      if (index > 0) {
-        marker.classList.remove('step-active');
-        marker.classList.add('border-secondary', 'text-secondary');
-      }
-    });
+      const dataToUse = (importedSubjectData && importedSubjectData.length > 0) ? importedSubjectData : SUBJECT_DATA_FALLBACK;
 
-    if (isStep2Complete && stepMarkers[1]) {
-      stepMarkers[1].classList.add('step-active');
-      stepMarkers[1].classList.remove('border-secondary', 'text-secondary');
-    }
-
-    if (isStep3Ready) {
-      if (stepMarkers[2]) {
-        stepMarkers[2].classList.add('step-active');
-        stepMarkers[2].classList.remove('border-secondary', 'text-secondary');
-      }
-      step3Intake.classList.remove('d-none');
-      generateSection.classList.remove('d-none');
-    } else {
-      step3Intake.classList.add('d-none');
-      generateSection.classList.add('d-none');
-      step4Result.classList.add('d-none');
-      if (stepMarkers[3]) stepMarkers[3].classList.remove('step-active');
-    }
-  }
-
-  // ===== UI helpers =====
-  function updateTitle() {
-    const firstName = document.getElementById('first-name')?.value.trim() || "";
-    const lastName = document.getElementById('last-name')?.value.trim() || "";
-    const today = new Date().toLocaleDateString('nl-NL');
-    const mainHeader = document.getElementById('main-header-title');
-    const mainSubtitle = document.getElementById('main-header-subtitle');
-
-    let titleText = "StudeerPlanner AI - Bootstrap";
-    if (firstName || lastName) titleText = `Studieplanning van ${firstName} ${lastName}, datum: ${today}`;
-    document.title = titleText;
-
-    if (!mainHeader || !mainSubtitle) return;
-
-    if (firstName || lastName) {
-      mainHeader.textContent = `Gepersonaliseerde studieplan van ${firstName} ${lastName}`;
-      mainSubtitle.textContent = `Op datum van vandaag: ${today}`;
-      mainSubtitle.classList.add('text-dark', 'fw-bold');
-      mainSubtitle.classList.remove('text-secondary', 'lead');
-    } else {
-      mainHeader.textContent = "Jouw gepersonaliseerde studieplan";
-      mainSubtitle.textContent = "Laat de AI jouw studielast verdelen in haalbare, motiverende stappen.";
-      mainSubtitle.classList.add('text-secondary', 'lead');
-      mainSubtitle.classList.remove('text-dark', 'fw-bold');
-    }
-  }
-
-  function updateSelectedSubjectsCount() {
-    selectedSubjectsCount = document.querySelectorAll('#subject-checkboxes input:checked').length;
-    updateTestOverview();
-    updateProgress();
-  }
-
-  function loadSubjects() {
-    const checkboxContainer = document.getElementById('subject-checkboxes');
-    if (!checkboxContainer) return;
-
-    const dataToUse = (importedSubjectData && importedSubjectData.length > 0) ? importedSubjectData : SUBJECT_DATA_FALLBACK;
-
-    checkboxContainer.innerHTML = dataToUse.map((subject, index) => `
-      <div class="col-6 col-sm-4 col-md-3">
-        <div class="p-2 bg-white rounded-3 border border-secondary-subtle shadow-sm">
-          <div class="form-check">
-            <input class="form-check-input border-secondary-subtle fs-5" type="checkbox" checked onchange="updateSelectedSubjectsCount()" id="check-${subject.shortColor}-${index}" style="margin-top: 0.3em;">
-            <label class="form-check-label fw-medium text-dark" for="check-${subject.shortColor}-${index}">
-              ${subject.name}
-            </label>
-          </div>
-        </div>
-      </div>
-    `).join('');
-
-    updateSelectedSubjectsCount();
-  }
-
-  function updateTestOverview() {
-    const overviewContainer = document.getElementById('test-overview');
-    const checkboxes = document.querySelectorAll('#subject-checkboxes input[type="checkbox"]');
-    const dataToUse = (importedSubjectData && importedSubjectData.length > 0) ? importedSubjectData : SUBJECT_DATA_FALLBACK;
-
-    if (!overviewContainer) return;
-
-    const selectedVakken = dataToUse.filter((subject, index) => checkboxes[index] && checkboxes[index].checked);
-
-    if (selectedVakken.length === 0) {
-      overviewContainer.innerHTML = '<p class="small text-secondary mb-0">Selecteer minimaal één vak om het overzicht te zien.</p>';
-      return;
-    }
-
-    overviewContainer.innerHTML = `
-      <div class="row g-3">
-        ${selectedVakken.map(subject => `
-          <div class="col-12">
-            <div class="d-flex align-items-start p-3 rounded-3 border border-secondary-subtle shadow-sm bg-white">
-              <span class="badge ${subject.color} rounded-circle me-3 mt-1" style="width: 12px; height: 12px; min-width: 12px; min-height: 12px; display: inline-block;"></span>
-              <div>
-                <p class="fw-semibold text-dark mb-1">${subject.name}:</p>
-                <ul class="list-unstyled small text-secondary mb-0 ps-3">
-                  ${(subject.tests || []).map(test => `
-                    <li class="position-relative" style="padding-left: 1rem;">
-                      <span class="position-absolute" style="left: -0.5rem; top: 0.2rem; line-height: 1;">&bull;</span>
-                      ${test.name}
-                      <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill ms-2 fw-medium">${test.type}</span>
-                    </li>
-                  `).join('')}
-                </ul>
-              </div>
+      checkboxContainer.innerHTML = dataToUse.map((subject, index) => `
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="p-2 bg-white rounded-3 border border-secondary-subtle shadow-sm">
+            <div class="form-check">
+              <input class="form-check-input border-secondary-subtle fs-5" type="checkbox" checked onchange="updateSelectedSubjectsCount()" id="check-${subject.shortColor}-${index}" style="margin-top: 0.3em;">
+              <label class="form-check-label fw-medium text-dark" for="check-${subject.shortColor}-${index}">
+                ${subject.name}
+              </label>
             </div>
           </div>
-        `).join('')}
-      </div>
-    `;
-  }
+        </div>
+      `).join('');
 
-  function selectStyle(id) {
-    const selectedButton = document.querySelector(`label[for="${id}"]`);
-    const buttonGroup = selectedButton?.closest('.btn-group');
-    if (!buttonGroup) return;
-
-    buttonGroup.querySelectorAll('.btn-check').forEach(radio => {
-      if (radio.id !== id) radio.checked = false;
-    });
-    const radio = document.getElementById(id);
-    if (radio) radio.checked = true;
-  }
-
-  function generatePlan() {
-    const endDate = document.getElementById('start-date-input')?.value;
-    const resultSection = document.getElementById('step-4-result');
-    const generateButton = document.querySelector('#generate-section button');
-    const step4Marker = stepMarkers[3];
-
-    if (!endDate || selectedSubjectsCount === 0) {
-      alertUser('Zorg ervoor dat je een einddatum hebt geselecteerd en minimaal één vak hebt aangevinkt.');
-      return;
+      updateSelectedSubjectsCount();
     }
 
-    if (!generateButton || !resultSection) return;
+    function updateTestOverview() {
+      const overviewContainer = document.getElementById('test-overview');
+      const checkboxes = document.querySelectorAll('#subject-checkboxes input[type="checkbox"]');
+      const dataToUse = (importedSubjectData && importedSubjectData.length > 0) ? importedSubjectData : SUBJECT_DATA_FALLBACK;
 
-    generateButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Plan Genereren...';
-    generateButton.disabled = true;
+      if (!overviewContainer) return;
 
-    setTimeout(() => {
-      resultSection.classList.remove('d-none');
+      const selectedVakken = dataToUse.filter((subject, index) => checkboxes[index] && checkboxes[index].checked);
 
-      if (step4Marker) {
-        step4Marker.classList.add('step-active');
-        step4Marker.classList.remove('border-secondary', 'text-secondary');
-        step4Marker.style.borderColor = 'var(--bs-success)';
-        step4Marker.style.backgroundColor = 'var(--bs-success)';
+      if (selectedVakken.length === 0) {
+        overviewContainer.innerHTML = '<p class="small text-secondary mb-0">Selecteer minimaal één vak om het overzicht te zien.</p>';
+        return;
       }
 
-      generateButton.innerHTML = '<svg class="me-3" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Genereer Mijn Persoonlijke Plan';
-      generateButton.disabled = false;
+      overviewContainer.innerHTML = `
+        <div class="row g-3">
+          ${selectedVakken.map(subject => `
+            <div class="col-12">
+              <div class="d-flex align-items-start p-3 rounded-3 border border-secondary-subtle shadow-sm bg-white">
+                <span class="badge ${subject.color} rounded-circle me-3 mt-1" style="width: 12px; height: 12px; min-width: 12px; min-height: 12px; display: inline-block;"></span>
+                <div>
+                  <p class="fw-semibold text-dark mb-1">${subject.name}:</p>
+                  <ul class="list-unstyled small text-secondary mb-0 ps-3">
+                    ${(subject.tests || []).map(test => `
+                      <li class="position-relative" style="padding-left: 1rem;">
+                        <span class="position-absolute" style="left: -0.5rem; top: 0.2rem; line-height: 1;">&bull;</span>
+                        ${test.name}
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill ms-2 fw-medium">${test.type}</span>
+                      </li>
+                    `).join('')}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
 
-      resultSection.scrollIntoView({ behavior: 'smooth' });
-    }, 1200);
-  }
+    // ===== plan generation (REAL) =====
+    function buildPlanPrompt({ startISO, endISO, selectedSubjects, intake, leerlingLeerjaar, leerlingStroom }) {
+      const tasksBySubject = selectedSubjects.map(s => ({
+        subject: s.name,
+        tasks: (s.tests || []).map(t => ({
+          task: t.name,
+          type: t.type || "Kennis",
+          minutes: Number.isFinite(Number(t.time)) ? Number(t.time) : 30,
+        })),
+      }));
 
-  function alertUser(message, variant = "danger") {
-  // Create toast container once
-  let container = document.getElementById("toast-container");
-  if (!container) {
-    container = document.createElement("div");
-    container.id = "toast-container";
-    container.className = "toast-container position-fixed top-0 end-0 p-3";
-    container.style.zIndex = "1080";
-    document.body.appendChild(container);
-  }
+      // Output contract (strict JSON)
+      return `
+You generate a realistic study plan for a Dutch secondary student.
 
-  const toastEl = document.createElement("div");
-  toastEl.className = `toast align-items-center text-bg-${variant} border-0`;
-  toastEl.setAttribute("role", "alert");
-  toastEl.setAttribute("aria-live", "assertive");
-  toastEl.setAttribute("aria-atomic", "true");
+CONTEXT:
+- grade_year: ${leerlingLeerjaar}
+- school_track: ${leerlingStroom}
+- planning_window: ${startISO} to ${endISO} (inclusive)
+- student notes:
+  - clarity_feedback: ${JSON.stringify(intake.feedback_clarity)}
+  - hardest_and_priority: ${JSON.stringify(intake.hardest_and_priority)}
+  - time_availability: ${JSON.stringify(intake.time_availability)}
+  - tips_choice: ${JSON.stringify(intake.tips_choice)}
+  - per_subject_details: ${JSON.stringify(intake.subject_details)}
 
-  toastEl.innerHTML = `
-    <div class="d-flex">
-      <div class="toast-body">${String(message)}</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-  `;
+LEERSTOF (do not invent new subjects; only plan using these):
+${JSON.stringify(tasksBySubject, null, 2)}
 
-  container.appendChild(toastEl);
+RULES:
+- Use ONLY the provided tasks. You MAY split a task into multiple "steps" by adding "(Stap 1/3)" etc, but do not invent new content.
+- Spread tasks over days within the planning window. Use student time_availability as guidance.
+- If time_availability is vague, assume on schooldays 45–60 min and weekend 90–120 min total, but keep it realistic.
+- Prioritize subjects mentioned in hardest_and_priority.
+- Each plan row needs a clear task label and a concrete study strategy.
+- Strategies must be one of: "Samenvatten","Oefensommen","Flashcards","Mindmap","Lezen","Herhalen"
+- Minutes should be an integer, typical block 20–60.
+- If tips_choice is "extra": include a short "tip" on each row (max 1 sentence).
+  If tips_choice is "keep": include ONLY a single overallTip and no per-row tips.
 
-  const toast = new bootstrap.Toast(toastEl, { delay: 2800 });
-  toast.show();
-
-  toastEl.addEventListener("hidden.bs.toast", () => toastEl.remove());
+RETURN ONLY VALID JSON (no markdown, no extra text) with this exact shape:
+{
+  "overallTip": "string",
+  "schedule": [
+    {
+      "date": "YYYY-MM-DD",
+      "subject": "string",
+      "task": "string",
+      "strategy": "Samenvatten|Oefensommen|Flashcards|Mindmap|Lezen|Herhalen",
+      "minutes": 30,
+      "tip": "string or null"
+    }
+  ]
 }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const firstNameInput = document.getElementById('first-name');
-    const lastNameInput = document.getElementById('last-name');
-    const endDateInput = document.getElementById('start-date-input');
+Make sure schedule contains enough rows to cover all tasks across the period.
+      `.trim();
+    }
 
-    // keep your existing inline handlers; these are just extra safety if you later remove them
-    if (firstNameInput) firstNameInput.addEventListener('input', updateProgress);
-    if (lastNameInput) lastNameInput.addEventListener('input', updateProgress);
-    if (endDateInput) endDateInput.addEventListener('change', updateProgress);
+    function renderPlan(plan) {
+      const tipEl = document.getElementById("ai-tip-text");
+      const tbody = document.getElementById("planning-tbody");
+      if (!tipEl || !tbody) return;
 
-    updateTitle();
-    updateProgress();
-  });
+      tipEl.textContent = plan?.overallTip || "Geen tip ontvangen.";
 
-  // Expose functions for inline HTML handlers
-  Object.assign(window, {
-    handleTextUpload,
-    updateTitle,
-    updateConfirmationText,
-    updateProgress,
-    generatePlan,
-    selectStyle,
-    updateSelectedSubjectsCount,
-    setApiKeyViaPrompt,
-    clearApiKey,
-  });
-</script>
+      const rows = Array.isArray(plan?.schedule) ? plan.schedule : [];
+      tbody.innerHTML = rows.map((r, idx) => {
+        const day = r?.date ? dayLabelNL(r.date) : "";
+        const subj = r?.subject || "";
+        const task = r?.task || "";
+        const strat = r?.strategy || "Herhalen";
+        const mins = Number.isFinite(Number(r?.minutes)) ? Number(r.minutes) : 30;
+        const extraTip = r?.tip ? `<div class="small text-secondary mt-1"><strong>Tip:</strong> ${String(r.tip)}</div>` : "";
+
+        return `
+          <tr>
+            <td class="px-3 py-3 fw-bold fs-5 text-primary">${day}</td>
+            <td class="px-3 py-3">
+              <span class="d-block fw-semibold">${task}</span>
+              <span class="d-block small text-secondary">Vak: ${subj}</span>
+              ${extraTip}
+            </td>
+            <td class="px-3 py-3">
+              <span class="badge bg-info text-info-emphasis border border-info-subtle rounded-pill fw-medium">${strat}</span>
+            </td>
+            <td class="px-3 py-3 text-center">${mins}</td>
+            <td class="px-3 py-3 text-center">
+              <input type="checkbox" class="form-check-input border-secondary-subtle" style="width: 20px; height: 20px;">
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    async function generatePlan() {
+      const endDate = document.getElementById('start-date-input')?.value;
+      const resultSection = document.getElementById('step-4-result');
+      const generateButton = document.getElementById('generate-btn');
+      const step4Marker = stepMarkers[3];
+
+      if (!endDate || selectedSubjectsCount === 0) {
+        alertUser('Zorg ervoor dat je een einddatum hebt geselecteerd en minimaal één vak hebt aangevinkt.');
+        return;
+      }
+
+      const leerlingLeerjaar = document.getElementById("niveau-select")?.value;
+      const leerlingStroom = document.getElementById("stroom-select")?.value;
+      if (!leerlingLeerjaar || !leerlingStroom) {
+        alertUser("Selecteer eerst leerjaar en onderwijsstroom.");
+        return;
+      }
+
+      let apiKey = getApiKeyFromLocalStorage();
+      if (!apiKey) {
+        setApiKeyViaPrompt();
+        apiKey = getApiKeyFromLocalStorage();
+      }
+      if (!apiKey) {
+        alertUser("Geen OpenRouter API key ingesteld.");
+        return;
+      }
+
+      const startISO = isoToday();
+      const endISO = endDate;
+
+      const selectedSubjects = getSelectedSubjects();
+      const intake = collectIntakeData();
+
+      // basic guard: if pupil didn't fill time availability, still allow but warn
+      if (!intake.time_availability) {
+        alertUser("Tip: vul bij 'tijd & dagen' iets in voor een betere planning.", "warning");
+      }
+
+      const originalBtn = generateButton?.innerHTML || "";
+      if (generateButton) {
+        generateButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Plan genereren...';
+        generateButton.disabled = true;
+      }
+
+      try {
+        setStatus("primary", "Planning genereren met AI...");
+
+        const prompt = buildPlanPrompt({ startISO, endISO, selectedSubjects, intake, leerlingLeerjaar, leerlingStroom });
+
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${apiKey}`,
+            "HTTP-Referer": window.location.href,
+            "X-Title": "StudeerPlanner AI",
+          },
+          body: JSON.stringify({
+            model: "google/gemini-2.0-flash-lite-001",
+            messages: [{ role: "user", content: prompt }],
+          }),
+        });
+
+        if (!response.ok) {
+          let errorMsg = response.statusText;
+          try {
+            const errorData = await response.json();
+            if (errorData?.error?.message) errorMsg = errorData.error.message;
+          } catch (e) {}
+          throw new Error(`API Error (${response.status}): ${errorMsg}`);
+        }
+
+        const result = await response.json();
+        let aiText = result?.choices?.[0]?.message?.content ?? "";
+        aiText = aiText.replace(/```json/g, "").replace(/```/g, "").trim();
+
+        const planObj = safeParseJsonObject(aiText);
+
+        // minimal validation (fail fast if nonsense)
+        if (!planObj || typeof planObj !== "object") throw new Error("AI heeft geen geldig plan-object teruggegeven.");
+        if (!Array.isArray(planObj.schedule)) throw new Error("AI output mist 'schedule' (array).");
+        if (typeof planObj.overallTip !== "string") planObj.overallTip = "Geen tip ontvangen.";
+
+        // If tips_choice is keep, strip per-row tips to enforce behavior
+        if (intake.tips_choice === "keep") {
+          planObj.schedule = planObj.schedule.map(r => ({ ...r, tip: null }));
+        }
+
+        generatedPlan = planObj;
+
+        // show step 4 + marker
+        if (resultSection) resultSection.classList.remove('d-none');
+        if (step4Marker) {
+          step4Marker.classList.add('step-active');
+          step4Marker.classList.remove('border-secondary', 'text-secondary');
+          step4Marker.style.borderColor = 'var(--bs-success)';
+          step4Marker.style.backgroundColor = 'var(--bs-success)';
+        }
+
+        renderPlan(generatedPlan);
+
+        setStatus("success", `Planning klaar! ${generatedPlan.schedule.length} blok(ken) ingepland.`);
+        resultSection?.scrollIntoView({ behavior: "smooth" });
+
+      } catch (error) {
+        console.error(error);
+        setStatus("danger", `Fout bij planning: ${error.message}`);
+        alertUser(`Fout bij planning: ${error.message}`);
+      } finally {
+        if (generateButton) {
+          generateButton.innerHTML = originalBtn;
+          generateButton.disabled = false;
+        }
+      }
+    }
+
+    function alertUser(message, variant = "danger") {
+      let container = document.getElementById("toast-container");
+      if (!container) {
+        container = document.createElement("div");
+        container.id = "toast-container";
+        container.className = "toast-container position-fixed top-0 end-0 p-3";
+        container.style.zIndex = "1080";
+        document.body.appendChild(container);
+      }
+
+      const toastEl = document.createElement("div");
+      toastEl.className = `toast align-items-center text-bg-${variant} border-0`;
+      toastEl.setAttribute("role", "alert");
+      toastEl.setAttribute("aria-live", "assertive");
+      toastEl.setAttribute("aria-atomic", "true");
+
+      toastEl.innerHTML = `
+        <div class="d-flex">
+          <div class="toast-body">${String(message)}</div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      `;
+
+      container.appendChild(toastEl);
+
+      const toast = new bootstrap.Toast(toastEl, { delay: 2800 });
+      toast.show();
+
+      toastEl.addEventListener("hidden.bs.toast", () => toastEl.remove());
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const firstNameInput = document.getElementById('first-name');
+      const lastNameInput = document.getElementById('last-name');
+      const endDateInput = document.getElementById('start-date-input');
+
+      if (firstNameInput) firstNameInput.addEventListener('input', updateProgress);
+      if (lastNameInput) lastNameInput.addEventListener('input', updateProgress);
+      if (endDateInput) endDateInput.addEventListener('change', updateProgress);
+
+      // keep step 3 synced when tips choice changes (optional)
+      document.getElementById("tips-keep")?.addEventListener("change", updateProgress);
+      document.getElementById("tips-extra")?.addEventListener("change", updateProgress);
+
+      updateTitle();
+      updateProgress();
+    });
+
+    // Expose functions for inline HTML handlers
+    Object.assign(window, {
+      handleTextUpload,
+      updateTitle,
+      updateConfirmationText,
+      updateProgress,
+      generatePlan,
+      updateSelectedSubjectsCount,
+      renderSubjectReflectionFields,
+      collectIntakeData,
+      setApiKeyViaPrompt,
+      clearApiKey,
+    });
+  </script>
 </body>
 </html>
